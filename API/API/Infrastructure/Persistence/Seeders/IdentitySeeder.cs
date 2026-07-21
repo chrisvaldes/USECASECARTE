@@ -28,25 +28,66 @@ namespace Infrastructure.Persistence.Seeders
 
         public async Task SeedAsync()
         {
-            var adminRoleName = "ADMIN"; 
             // ========================
-            // ROLE
+            // DÉFINITION DES RÔLES
             // ========================
-            var role = await _roleManager.FindByNameAsync(adminRoleName);
-
-            if (role == null)
+            var roleDefinitions = new[]
             {
-                role = new Role
-                {
-                    Name = adminRoleName,
-                    NormalizedName = adminRoleName.ToUpper()
-                };
+                new { Name = "SUPER_ADMIN", Description = "Accès complet à toutes les fonctionnalités" },
+                new { Name = "ADMIN", Description = "Gestion des utilisateurs et profils" },
+                new { Name = "GESTIONNAIRE", Description = "Gestion opérationnelle (consultation + modification)" },
+                new { Name = "CONSULTANT", Description = "Lecture seule" },
+            };
 
-                await _roleManager.CreateAsync(role);
+            var createdRoles = new Dictionary<string, Role>();
+
+            foreach (var def in roleDefinitions)
+            {
+                var role = await _roleManager.FindByNameAsync(def.Name);
+                if (role == null)
+                {
+                    role = new Role
+                    {
+                        Name = def.Name,
+                        NormalizedName = def.Name.ToUpper()
+                    };
+                    await _roleManager.CreateAsync(role);
+                    Console.WriteLine($"Rôle créé : {def.Name}");
+                }
+                createdRoles[def.Name] = (await _roleManager.FindByNameAsync(def.Name))!;
             }
 
-            role = await _roleManager.FindByNameAsync(adminRoleName);
+            // ========================
+            // ATTRIBUTION DES PERMISSIONS PAR RÔLE
+            // ========================
+            var allPermissionCodes = await _context.Set<Permission>()
+                .Select(p => p.Code)
+                .ToListAsync();
 
+            // SUPER_ADMIN : toutes les permissions
+            await AssignFilteredPermissionsToRole(createdRoles["SUPER_ADMIN"], allPermissionCodes);
+
+            // ADMIN : toutes les permissions CRUD sur PROFIL
+            var adminPermissions = allPermissionCodes
+                .Where(p => p.StartsWith("PROFIL_"))
+                .ToList();
+            await AssignFilteredPermissionsToRole(createdRoles["ADMIN"], adminPermissions);
+
+            // GESTIONNAIRE : CONSULTER + MODIFIER sur PROFIL
+            var gestionnairePermissions = allPermissionCodes
+                .Where(p => p == "PROFIL_CONSULTER" || p == "PROFIL_MODIFIER")
+                .ToList();
+            await AssignFilteredPermissionsToRole(createdRoles["GESTIONNAIRE"], gestionnairePermissions);
+
+            // CONSULTANT : CONSULTER uniquement
+            var consultantPermissions = allPermissionCodes
+                .Where(p => p == "PROFIL_CONSULTER")
+                .ToList();
+            await AssignFilteredPermissionsToRole(createdRoles["CONSULTANT"], consultantPermissions);
+
+            // ========================
+            // CRÉATION DE L'UTILISATEUR ADMIN
+            // ========================
             var adminUser = await _userManager.Users.FirstOrDefaultAsync(u => u.Nom == "Admin");
 
             if (adminUser == null)
@@ -64,9 +105,7 @@ namespace Infrastructure.Persistence.Seeders
 
                 var result = await _userManager.CreateAsync(newUser, "Admin@123");
 
-                Console.WriteLine("USER CREATED");
-                Console.WriteLine($"RESULT: {result.Succeeded}");
-
+                Console.WriteLine($"USER CREATED: {result.Succeeded}");
 
                 if (!result.Succeeded)
                 {
@@ -75,32 +114,22 @@ namespace Infrastructure.Persistence.Seeders
                 }
 
                 adminUser = await _userManager.FindByNameAsync("admin");
-
-
-                Console.WriteLine("USER CREATED");
-                Console.WriteLine($"RESULT: {result.Succeeded}");
-
             }
 
-            var roles = await _userManager.GetRolesAsync(adminUser);
+            // ========================
+            // ATTRIBUTION DU RÔLE SUPER_ADMIN À L'ADMIN
+            // ========================
+            var userRoles = await _userManager.GetRolesAsync(adminUser);
 
-            if (!roles.Contains(adminRoleName))
+            if (!userRoles.Contains("SUPER_ADMIN"))
             {
-                await _userManager.AddToRoleAsync(adminUser, adminRoleName);
-            }
-
-            if (role != null)
-            {
-                await AssignAllPermissionsToRole(role);
+                await _userManager.AddToRoleAsync(adminUser, "SUPER_ADMIN");
+                Console.WriteLine("Rôle SUPER_ADMIN attribué à l'utilisateur admin");
             }
         }
 
-        private async Task AssignAllPermissionsToRole(Role role)
+        private async Task AssignFilteredPermissionsToRole(Role role, List<string> permissionCodes)
         {
-            var permissions = await _context.Set<Permission>()
-                .Select(p => p.Code)
-                .ToListAsync();
-
             var existingClaims = await _roleManager.GetClaimsAsync(role);
 
             var existingValues = existingClaims
@@ -108,12 +137,12 @@ namespace Infrastructure.Persistence.Seeders
                 .Select(c => c.Value)
                 .ToHashSet();
 
-            foreach (var permission in permissions)
+            foreach (var code in permissionCodes)
             {
-                if (!existingValues.Contains(permission))
+                if (!existingValues.Contains(code))
                 {
-                    await _roleManager.AddClaimAsync(role,
-                        new Claim("permission", permission));
+                    await _roleManager.AddClaimAsync(role, new Claim("permission", code));
+                    Console.WriteLine($"Permission '{code}' ajoutée au rôle '{role.Name}'");
                 }
             }
         }

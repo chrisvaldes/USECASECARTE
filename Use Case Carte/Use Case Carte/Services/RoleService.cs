@@ -132,7 +132,7 @@ namespace Use_Case_Carte.Services
             }
         }
 
-        public async Task<ApiResponse<string>> UpdateAsync(Guid roleId, CreateRoleDto dto)
+        public async Task<ApiResponse<string>> UpdateAsync(Guid roleId, UpdateRoleDto dto)
         {
             await AddAuthHeader();
 
@@ -189,6 +189,68 @@ namespace Use_Case_Carte.Services
             finally
             {
                 await _js.InvokeVoidAsync("toggleOffLoaderAndToast");
+            }
+        }
+
+        public async Task<ApiResponse<RoleDto>> GetByIdAsync(Guid roleId)
+        {
+            await AddAuthHeader();
+
+            try
+            {
+                var response = await _http.GetAsync($"api/Role/{roleId}");
+                var content = await response.Content.ReadAsStringAsync();
+
+                _logger.LogInformation(
+                    "GetByIdAsync: StatusCode={StatusCode} | Body={Content}",
+                    response.StatusCode,
+                    content
+                );
+
+                var options = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
+                var result = JsonSerializer.Deserialize<ApiResponse<RoleDto>>(content, options);
+
+                return result!;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Erreur GetByIdAsync (Role): {ex.Message}");
+                return new ApiResponse<RoleDto>
+                {
+                    Success = false,
+                    Message = $"Erreur technique : {ex.Message}"
+                };
+            }
+        }
+
+        public async Task<ApiResponse<string>> DeleteAsync(Guid roleId)
+        {
+            await AddAuthHeader();
+
+            try
+            {
+                var response = await _http.DeleteAsync($"api/Role/{roleId}");
+                var content = await response.Content.ReadAsStringAsync();
+
+                _logger.LogInformation(
+                    "DeleteAsync: StatusCode={StatusCode} | Body={Content}",
+                    response.StatusCode,
+                    content
+                );
+
+                var options = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
+                var result = JsonSerializer.Deserialize<ApiResponse<string>>(content, options);
+
+                return result!;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Erreur DeleteAsync (Role): {ex.Message}");
+                return new ApiResponse<string>
+                {
+                    Success = false,
+                    Message = $"Erreur technique : {ex.Message}"
+                };
             }
         }
     }

@@ -178,7 +178,7 @@
 
                                         <li class="slide">
 
-                                            <NavLink href="@Route.CreateRoles" class="side-menu__item"
+                                            <NavLink href="@Route.Roles" class="side-menu__item"
                                                      ActiveClass="active">
 
                                                 Liste des rôles
@@ -309,7 +309,8 @@
     private bool RolePermissionOpen =>
         IsActive("MAG/roles")
         || IsActive("MAG/permissions")
-        || IsActive("MAG/nouvelle-permission");
+        || IsActive("MAG/nouvelle-permission")
+        || IsActive("MAG/roles/modifier");
 
     private bool MagOpen =>
         IsActive("MAG/gestion-mag")

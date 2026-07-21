@@ -1,5 +1,80 @@
-@page "/MAG/Liste-roles" 
- 
-<div>
-    
+@page "/MAG/roles"
+@rendermode @(new InteractiveServerRenderMode(prerender: false))
+
+<div class="d-flex align-items-center justify-content-between page-header-breadcrumb flex-wrap gap-2">
+
+    <SharedHeader PreviousPage="Gestion des rôles" CurrentPage="Liste des rôles" OnCancel="OnCancel" />
+
+    <button class="btn btn-primary open-modal-btn" @onclick="NouveauRole" id="openProfileModalBtn">
+        <i class="fa-solid fa-plus me-1 fw-medium align-middle"></i>
+        Nouveau rôle
+    </button>
+
 </div>
+
+<div class="row d-flex align-items-center justify-content-center mt-3">
+    <div class="col-xxl-12">
+        <div class="card custom-card">
+            <div class="card-header d-flex align-items-center justify-content-between">
+                <div class="card-title">Liste des rôles</div>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-hover text-nowrap table-bordered">
+                        <thead>
+                            <tr>
+                                <th class="text-center" scope="col">#</th>
+                                <th class="text-center" scope="col">Nom du rôle</th>
+                                <th class="text-center" scope="col">Permissions</th>
+                                <th class="text-center" scope="col">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (!roles.Any())
+                            {
+                                <tr class="text-center text-danger">
+                                    <td colspan="4">Aucun rôle enregistré !</td>
+                                </tr>
+                            }
+                            else
+                            {
+                                var index = 1;
+                                foreach (var role in roles)
+                                {
+                                    <tr>
+                                        <td class="text-center">@index</td>
+                                        <td class="text-center">@role.Name</td>
+                                        <td class="text-center">
+                                            @if (role.Permissions.Any())
+                                            {
+                                                <span class="badge bg-info">@role.Permissions.Count permission(s)</span>
+                                            }
+                                            else
+                                            {
+                                                <span class="badge bg-warning">Aucune</span>
+                                            }
+                                        </td>
+                                        <td class="text-center">
+                                            <div class="btn-list">
+                                                <button class="btn btn-icon rounded-pill btn-sm btn-secondary-light"
+                                                        @onclick="() => ModifierRole(role.Id)">
+                                                    <i class="fa-solid fa-pencil"></i>
+                                                </button>
+                                                <button class="btn btn-icon rounded-pill btn-sm btn-danger-light"
+                                                        @onclick="() => SupprimerRole(role.Id)">
+                                                    <i class="fa-solid fa-trash"></i>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    index++;
+                                }
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

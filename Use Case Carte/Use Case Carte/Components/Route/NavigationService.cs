@@ -90,5 +90,12 @@ public class NavigationService
         _navigation.NavigateTo(Route.NouvellePermission);
     }
 
+    public void GoModifierRole(string roleId)
+    {
+        _navigation.NavigateTo($"{Route.ModifierRole}/{roleId}");
+    }
+
+    
+
     
 }

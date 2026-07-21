@@ -18,6 +18,7 @@ public static class Route
 
     public const string Roles = "/MAG/roles";
     public const string CreateRoles = "/MAG/roles/creer";
+    public const string ModifierRole = "/MAG/roles/modifier";
 
     public const string Permissions = "/MAG/permissions";
     public const string NouvellePermission = "/MAG/nouvelle-permission";

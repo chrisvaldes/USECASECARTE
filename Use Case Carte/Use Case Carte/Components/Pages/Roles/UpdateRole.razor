@@ -1,0 +1,91 @@
+@page "/MAG/roles/modifier/{Id:guid}"
+@rendermode @(new InteractiveServerRenderMode(prerender: false))
+
+<div class="d-flex align-items-center justify-content-between page-header-breadcrumb flex-wrap gap-2">
+    <SharedHeader PreviousPage="Gestion des rôles"
+                  CurrentPage="Modifier rôle" />
+</div>
+
+<div class="row justify-content-center mt-3">
+    <div class="col-xxl-10 col-xl-12">
+
+        <div class="card custom-card">
+
+            <div class="card-header">
+                <div class="card-title">
+                    Modifier le rôle
+                </div>
+            </div>
+
+            <EditForm Model="@roleModel" OnValidSubmit="OnValiderModification">
+
+                <DataAnnotationsValidator />
+                <ValidationSummary />
+
+                <div class="card-body">
+
+                    <div class="mb-3">
+                        <label for="roleName" class="form-label">
+                            Nom du rôle
+                        </label>
+
+                        <InputText id="roleName"
+                                   class="form-control"
+                                   @bind-Value="roleModel.Name"
+                                   placeholder="Ex : Administrateur, Gestionnaire..." />
+                    </div>
+
+                    <div class="mb-3">
+
+                        <label class="form-label">
+                            Arbre des permissions
+                        </label>
+
+                        @if (!permissionsTree.Any())
+                        {
+                            <p class="text-center text-danger">
+                                Aucune permission disponible.
+                            </p>
+                        }
+
+                        <!-- Toujours présent dans le DOM -->
+                        <div id="permissionTreeContainer"
+                             class="border rounded p-3"
+                             style="min-height:300px; @(permissionsTree.Any() ? "" : "display:none;")">
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="card-footer d-flex justify-content-end gap-2">
+
+                    <button type="button"
+                            class="btn btn-secondary"
+                            @onclick="Annuler"
+                            disabled="@isSaving">
+                        Annuler
+                    </button>
+
+                    <button type="submit"
+                            class="btn btn-primary"
+                            disabled="@isSaving">
+
+                        @if (isSaving)
+                        {
+                            <span class="spinner-border spinner-border-sm me-2"></span>
+                        }
+
+                        Enregistrer les modifications
+
+                    </button>
+
+                </div>
+
+            </EditForm>
+
+        </div>
+
+    </div>
+</div>
+
