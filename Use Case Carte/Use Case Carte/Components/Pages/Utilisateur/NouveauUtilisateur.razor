@@ -1,0 +1,105 @@
+@page "/MAG/nouveau-utilisateur"
+@rendermode @(new InteractiveServerRenderMode(prerender: false))
+<Toast />
+<div>
+    <SharedHeader
+        PreviousPage="Liste des utilisateurs"
+        CurrentPage="Creation utilisateur"
+        OnCancel="OnCancel" />
+</div>
+<div class="row align-items-center justify-content-center">
+    <div class="col-xxl-10 col-xl-12">
+        <div class="card custom-card">
+            <div class="card-header">
+                <div class="card-title">Nouveau Utilisateur</div>
+            </div>
+            <div class="card-body">
+                <EditForm Model="@UserDto" FormName="OnSaveUser">
+                    <DataAnnotationsValidator />
+                    <ValidationSummary />
+                    <div class="row gy-3">
+                        <div class="col-xl-12">
+                            <label for="AG-utilisateur" class="form-label">
+                                Matricule
+                            </label>
+                            <InputText
+                                class="form-control"
+                                id="utilisateur-AG"
+                                @bind-Value="UserDto.Matricule"
+                                placeholder="AG-utilisateur" />
+                        </div>
+                        <div class="col-xl-6">
+                            <label for="profil-name" class="form-label">
+                                Nom
+                            </label>
+                            <InputText
+                                class="form-control"
+                                id="profil-name"
+                                @bind-Value="UserDto.Nom"
+                                placeholder="Nom utilisateur" />
+                        </div>
+                        <div class="col-xl-6">
+                            <label for="profil-name" class="form-label">
+                                Prenom
+                            </label>
+                            <InputText
+                                class="form-control"
+                                id="profil-name"
+                                @bind-Value="UserDto.Prenom"
+                                placeholder="Nom utilisateur" />
+                        </div>
+                        <div class="col-xl-12">
+                            <label for="email" class="form-label">
+                                Email
+                            </label>
+                            <InputText
+                                type="email"
+                                class="form-control"
+                                id="email"
+                                @bind-Value="UserDto.Email"
+                                placeholder="Email utilisateur" />
+                        </div>
+                        <InputText
+                            type="email"
+                            class="form-control"
+                            id="email"
+                            @bind-Value="UserDto.Type"
+                            hidden
+                            placeholder="type" />
+                        <div class="col-xl-12">
+                            <label class="form-label">Type de profil</label>
+                            <select
+                                id="rolesSelect"
+                                class="form-select"
+                                multiple>
+                                @foreach (var role in RoleDto)
+                                {
+                                    <option value="@role.Id">
+                                    @role.Name
+                                    </option>
+                                }
+                            </select>
+                        </div>
+                    </div>
+                </EditForm>
+            </div>
+            <div class="modal-footer">
+                <button
+                    type="button"
+                    class="btn btn-primary btn-wave waves-effect waves-light  me-2"
+                    @onclick="() => OnCancel()">
+                    Annuler
+                </button>
+                <button
+                    id="
+                    submitBtn
+                    type="
+                    submit
+                    class="btn btn-success"
+                    @onclick="OnSaveUser">
+                    Enregistrer
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

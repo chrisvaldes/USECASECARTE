@@ -1,0 +1,17 @@
+<div class="d-flex align-items-center justify-content-between page-header-breadcrumb flex-wrap gap-2">
+    <div>
+        <nav>
+            <ol class="breadcrumb mb-1">
+                <li class="breadcrumb-item fw-bold">
+                    <a href="javascript:void(0);" @onclick="async () => await OnCancel.InvokeAsync()">
+                        @PreviousPage
+                    </a>
+                </li>
+                <i class="ri-arrow-right-s-line side-menu__angle"></i>
+                <li class="breadcrumb-item">
+                    @CurrentPage
+                </li>
+            </ol>
+        </nav>
+    </div>
+</div>

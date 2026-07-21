@@ -1,0 +1,62 @@
+﻿@inherits LayoutComponentBase
+@using Use_Case_Carte.Components.Skeletor
+
+
+<div id="loaderOverlay" class="loader-overlay">
+    <div class="loader-container">
+        <div class="align-content-center">
+            <div class="spinner"></div>
+        </div>
+    </div>
+</div>
+
+
+<div class="page">
+
+    <!-- app-header -->
+    <header class="app-header sticky sticky-pin" id="header">
+        <Header />
+    </header>
+    <!-- /app-header -->
+
+    <!-- Start::app-sidebar -->
+    <aside class="app-sidebar sticky sticky-pin" id="sidebar">
+        <Aside @rendermode="@(new InteractiveServerRenderMode(prerender:false))"/>
+    </aside>
+    <!-- End::app-sidebar -->
+
+
+    <!-- Start::app-content -->
+    <div class="main-content app-content"
+         style="display:flex; flex-direction:column; min-height:calc(100vh - 60px);">
+
+        <div class="container-fluid"
+             style="flex:1;">
+
+            <!-- Loader local -->
+            <div id="contentLoader" class="loader-overlay content-loader">
+                <div class="loader-container">
+                    <div class="spinner"></div>
+                </div>
+            </div>
+
+            <!-- Contenu -->
+            <div id="pageContent">
+                <main role="main" class="pb-3">
+                    @Body
+                </main>
+            </div>
+
+        </div>
+
+
+        <!-- Footer -->
+        <footer class="footer mt-auto py-3 bg-white text-center">
+            <Footer />
+        </footer>
+        <!-- Footer End -->
+
+    </div>
+    <!-- End::app-content -->
+
+</div>

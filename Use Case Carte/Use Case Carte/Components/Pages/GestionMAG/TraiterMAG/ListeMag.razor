@@ -1,0 +1,138 @@
+@rendermode @(new InteractiveServerRenderMode(prerender: false))
+@page "/MAG/gestion-mag"
+@{
+    var index = 1;
+}
+<div class="d-flex align-items-center justify-content-between page-header-breadcrumb flex-wrap gap-2">
+    <div>
+        <SharedHeader PreviousPage="Gestion du MAG" CurrentPage="Liste MAG" OnCancel="OnCancel" />
+    </div>
+    <button class="btn btn-primary" @onclick="NouveauMag">
+        <i class="fa-solid fa-plus me-1 fw-medium align-middle"></i>
+        Nouveau MAG
+    </button>
+</div>
+<div class="row d-flex align-items-center justify-content-center">
+    <div class="col-xxl-12">
+        <div class="card custom-card">
+            <div class="card-header justify-content-between">
+                <div class="card-title">Liste des types de MAG</div>
+                <div class="d-block">
+                    <div class="position-relative">
+                        <!-- Bouton clear -->
+                        <span id="clearSearch" class="position-absolute top-50 end-0 translate-middle-y me-3"
+                              style="cursor:pointer; display:none;">
+                            <i class="fa-solid fa-xmark text-muted"></i>
+                        </span>
+                    </div>
+                    <div class="d-flex align-items-end justify-content-end  mt-1">
+                        <small id="resultCount" class="text-muted mt-1"></small>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table id="usersTable" class="table table-hover text-nowrap table-bordered">
+                        <thead>
+                            <tr>
+                                <th class="text-center" scope="col">
+                                    P.No
+                                </th>
+                                <th class="text-center" scope="col">
+                                    Type MAG
+                                </th>
+                                <th class="text-center" scope="col">
+                                    Description MAG
+                                </th>
+                                <th class="text-center" scope="col">
+                                    AG utilisateur
+                                </th>
+                                <th class="text-center" scope="col">
+                                    Actions
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (!typeMags.Any())
+                            {
+                                <tr class="text-center text-danger">
+                                    <td colspan="5">Aucune donn?e disponible pour les types de Manque ? Gagner !</td>
+                                </tr>
+                            }
+                            else
+                            {
+                                @foreach (var typeMag in typeMags)
+                                {
+                                    <tr>
+                                        <td class="text-center">
+                                            @index
+                                        </td>
+                                        <td class="text-center">
+                                            @typeMag.TypeMags
+                                        </td>
+                                        <td class="text-center">
+                                            @typeMag.Description
+                                        </td>
+                                        <td class="text-center">
+                                            @typeMag.Email
+                                        </td>
+                                        <td class="text-center">
+                                            <div class="d-flex justify-content-center align-items-center gap-3">
+
+                                                <button @onclick="() => GoToSyntheseMag(typeMag)"
+                                                        class="btn btn-icon btn-sm btn-info-light">
+                                                    <i class="ri-file-chart-line"></i>
+                                                </button>
+
+                                                <!-- Téléchargement BKMVTI -->
+
+                                                <button @onclick="() => DownloadBkmvti(typeMag)"
+                                                        disabled="@typeMag.isAlreadyDownload"
+                                                        class="btn btn-icon btn-sm btn-success-light">
+                                                    <i class="ri-download-2-line"></i>
+                                                </button>
+
+                                                <button @onclick="() => DownloadCarteAReguler(typeMag)"
+                                                        class="btn btn-icon btn-sm btn-warning-light">
+                                                    <i class="ri-bank-card-line"></i>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    index++;
+                                }
+                            }
+                        </tbody>
+                    </table>
+                    <div class="card-footer">
+                        <div class="d-flex align-items-center">
+                            <div>
+                                <small id="resultCount" class="text-muted"></small>
+                            </div>
+                            <div class="ms-auto">
+                                <nav aria-label="Page navigation" class="pagination-style-4">
+                                    <ul class="pagination mb-0" id="paginationContainer">
+                                        <!-- PREV -->
+                                        <li class="page-item" id="prevPageItem">
+                                            <a class="page-link" href="javascript:void(0);" id="prevPage">
+                                                Prec
+                                            </a>
+                                        </li>
+                                        <!-- NUMEROS -->
+                                        <span id="pageNumbers" class="d-flex  gap-1 mx-1"></span>
+                                        <!-- NEXT -->
+                                        <li class="page-item" id="nextPageItem">
+                                            <a class="page-link text-primary" href="javascript:void(0);" id="nextPage">
+                                                Suiv
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </nav>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

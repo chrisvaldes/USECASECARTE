@@ -1,0 +1,101 @@
+@page "/MAG/creation-profil"
+
+@rendermode @(new InteractiveServerRenderMode(prerender: false))
+<Toast />
+<div>
+    <SharedHeader PreviousPage="Liste des Profils" CurrentPage="Creation Profil" OnCancel="OnCancel" />
+</div>
+<div class="row align-items-center justify-content-center">
+    <div class="col-xxl-10 col-xl-12">
+        <div class="card custom-card">
+            <div class="card-header">
+                <div class="card-title">Nouveau Utilisateur</div>
+            </div>
+            <div class="card-body">
+                <EditForm Model="@profilModel" FormName="OnSaveProfil" >
+                    <DataAnnotationsValidator />
+                    <ValidationSummary />
+                    <div class="row gy-3">
+                        <div class="col-xl-12">
+                            <label for="profil-name" class="form-label">
+                                Nom utilisateur
+                            </label>
+                            <InputText
+                                class="form-control"
+                                id="profil-name"
+                                @bind-Value="profilModel.UserName"
+                                placeholder="Nom utilisateur" />
+                        </div>
+                        <div class="col-xl-6">
+                            <label for="AG-utilisateur" class="form-label">
+                                AG-utilisateur
+                            </label>
+                            <InputText
+                                class="form-control"
+                                id="utilisateur-AG"
+                                @bind-Value="profilModel.Userag"
+                                placeholder="AG-utilisateur" />
+                        </div>
+                        <div class="col-xl-6">
+                            <label for="email" class="form-label">
+                                Email utilisateur
+                            </label>
+                            <InputText
+                                type="email"
+                                class="form-control"
+                                id="email"
+                                @bind-Value="profilModel.Email"
+                                placeholder="Email utilisateur" />
+                        </div>
+                        <div class="col-xl-12">
+                            <label for="type-profil" class="form-label">
+                                Type de profil
+                            </label>
+                            <InputSelect @bind-Value="profilModel.TypeProfile" class="form-select">
+                                <option selected disabled>
+                                    Selectionnez un type de profil
+                                </option>
+                                @foreach (EnumProfil ep in Enum.GetValues(typeof(EnumProfil)))
+                                {
+                                    <option value="@ep">
+                                    @ep.ToString()
+                                    </option>
+                                }
+                            </InputSelect>
+                        </div>
+                        <div class="col-xl-12">
+                            <label for="user-status" class="form-label">
+                                Statut du profil
+                            </label>
+                            <InputSelect @bind-Value="profilModel.Status" class="form-select">
+                                @foreach (EnumStatut es in Enum.GetValues(typeof(EnumStatut)))
+                                {
+                                    <option value="@es">
+                                    @es.ToString()
+                                    </option>
+                                }
+                            </InputSelect>
+                        </div>
+                    </div>
+                </EditForm>
+            </div>
+            <div class="modal-footer">
+                <button
+                    type="button"
+                    class="btn btn-primary btn-wave waves-effect waves-light  me-2"
+                    @onclick="() => OnCancel()">
+                    Annuler
+                </button>
+                <button
+                    id="
+                    submitBtn
+                    type="
+                    submit
+                    class="btn btn-success"
+                    @onclick="OnSaveProfil">
+                    Enregistrer
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,159 @@
+@page "/MAG/utilisateurs"
+@rendermode @(new InteractiveServerRenderMode(prerender: false))
+
+
+@{
+    var index = 1;
+}
+
+<div class="d-flex align-items-center justify-content-between page-header-breadcrumb flex-wrap gap-2">
+
+    <SharedHeader PreviousPage="Gestion des utilisateurs" CurrentPage="Liste des utilisateurs" OnCancel="OnCancel" />
+
+    <button class="btn btn-primary open-modal-btn" @onclick="NouvelleUtilisateur" id="openProfileModalBtn">
+        <i class="fa-solid fa-plus me-1 fw-medium align-middle"></i>
+        Nouveau utilisateur
+    </button>
+
+</div>
+
+<div class="row d-flex align-items-center justify-content-center">
+    <div class="col-xxl-12">
+        <div class="card custom-card">
+            <div class="card-header d-flex align-items-center justify-content-between">
+                <div class="card-title">Liste des utilisateurs</div>
+                <div class="d-block">
+                    <div class="position-relative">
+                        <InputText type="text" id="searchInput" class="form-control pe-5" @bind-Value="searchQuery"
+                                   placeholder="Rechercher un utilisateur..." />
+                        <!-- Bouton clear -->
+                        <span id="clearSearch" class="position-absolute top-50 end-0 translate-middle-y me-3"
+                              style="cursor:pointer; display:none;">
+                            <i class="fa-solid fa-xmark text-muted"></i>
+                        </span>
+                    </div>
+                    <div class="d-flex align-items-end justify-content-end  mt-1">
+                        <small id="resultCount" class="text-muted mt-1"></small>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table id="usersTable" class="table table-hover text-nowrap table-bordered">
+                            <thead>
+                                <tr>
+                                    <th class="text-center" scope="col">
+                                        P.No
+                                    </th>
+                                    <th class="text-center" scope="col">
+                                        Nom
+                                    </th>
+                                    <th class="text-center" scope="col">
+                                        Prénom
+                                    </th>
+                                    <th class="text-center" scope="col">
+                                        Email
+                                    </th>
+                                    <th class="text-center" scope="col">
+                                        Matricule
+                                    </th>
+                                    <th class="text-center" scope="col">
+                                        Rôle
+                                    </th>
+                                    <th class="text-center" scope="col">
+                                        Status
+                                    </th>
+                                    <th class="text-center" scope="col">
+                                        Actions
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @if (!UserDtos.Any())
+                                {
+                                    <tr class="text-center text-danger">
+                                        <td colspan="8">Aucun profil utilisateur enregistr?!!!</td>
+                                    </tr>
+                                }
+                                else
+                                {
+                                    foreach (UserDto userDto in UserDtos)
+                                    {
+                                        <tr>
+                                            <td class="text-center">
+                                                @index
+                                            </td>
+                                            <td class="text-center">
+                                                @userDto.Nom
+                                            </td>
+                                            <td class="text-center">
+                                                @userDto.Prenom
+                                            </td>
+                                            <td class="text-center">
+                                                @userDto.Email
+                                            </td>
+                                            <td class="text-center">
+                                                @userDto.Matricule
+                                            </td>
+                                            <td class="text-center">
+                                                @string.Join(", ", userDto.Roles)
+                                            </td>
+                                            <td class="text-center">
+                                                <span class="badge @(userDto.IsActive ? "bg-success" : "bg-warning")">
+                                                    @userDto.IsActive
+                                                </span>
+                                            </td>
+                                            <td class="text-center">
+                                                <div class="btn-list">
+                                                    <a class="btn btn-icon rounded-pill btn-sm btn-secondary-light" @
+                                                       @onclick="() => ModifierProfil(userDto)">
+                                                        <i class="fa-solid fa-pencil"></i>
+                                                    </a>
+                                                    <a href="javascript:void(0);" onclick="showDeleteProfile('@userDto.Id')"
+                                                       data-bs-toggle="tooltip" data-bs-placement="top" title="Delete"
+                                                       class="btn btn-icon rounded-pill btn-sm btn-danger-light">
+                                                        <i class="fa-solid fa-trash"></i>
+                                                    </a>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        index++;
+                                    }
+                                }
+                            </tbody>
+                        </table>
+                        <div class="card-footer">
+                            <div class="d-flex align-items-center">
+                                <div>
+                                    <small id="resultCount" class="text-muted"></small>
+                                </div>
+                                <div class="ms-auto">
+                                    <nav aria-label="Page navigation" class="pagination-style-4">
+                                        <ul class="pagination mb-0" id="paginationContainer">
+                                            <!-- PREV -->
+                                            <li class="page-item" id="prevPageItem">
+                                                <a class="page-link" href="javascript:void(0);" id="prevPage">
+                                                    Prec
+                                                </a>
+                                            </li>
+                                            <!-- NUMEROS -->
+                                            <span id="pageNumbers" class=" "></span>
+                                            <!-- NEXT -->
+                                            <li class="page-item" id="nextPageItem">
+                                                <a class="page-link text-primary" href="javascript:void(0);"
+                                                   id="nextPage">
+                                                    Suiv
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </nav>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

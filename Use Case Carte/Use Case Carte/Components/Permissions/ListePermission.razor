@@ -1,0 +1,52 @@
+@page "/MAG/permissions"
+@rendermode @(new InteractiveServerRenderMode(prerender: false))
+
+<div class="d-flex align-items-center justify-content-between page-header-breadcrumb flex-wrap gap-2">
+
+    <SharedHeader PreviousPage="Gestion des permissions" CurrentPage="Liste des permissions" />
+
+    <button class="btn btn-primary open-modal-btn" @onclick="NouvellePermission" id="openProfileModalBtn">
+        <i class="fa-solid fa-plus me-1 fw-medium align-middle"></i>
+        Nouvelle permission
+    </button>
+
+</div>
+
+ 
+
+<!-- ARBRE DES PERMISSIONS -->
+
+<div class="row d-flex align-items-center justify-content-center mt-3">
+
+    <div class="col-xxl-12">
+
+        <div class="card custom-card">
+
+            <div class="card-header">
+
+                <div class="card-title">
+                    Arbre des permissions
+                </div>
+
+            </div>
+
+            <div class="card-body">
+
+                @if (!permissionsTree.Any())
+                {
+                    <p class="text-center text-danger">
+                        Aucune permission disponible.
+                    </p>
+                }
+                else
+                {
+                    <div id="permissionTreeContainer"></div>
+                }
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

@@ -1,0 +1,23 @@
+@page "/MAG/profil"
+@rendermode @(new InteractiveServerRenderMode(prerender: false))
+<div class="d-flex align-items-center justify-content-between page-header-breadcrumb flex-wrap gap-2">
+    <div>
+        <nav>
+            <ol class="breadcrumb mb-1">
+                <li class="breadcrumb-item fw-bold">
+                    <a href="javascript:void(0);">Gestion des utilisateurs</a>
+                </li>
+                <i class="ri-arrow-right-s-line side-menu__angle"></i>
+                <li class="breadcrumb-item  ">Liste des utilisateurs</li>
+            </ol>
+        </nav>
+    </div>
+    <button
+        class="btn btn-primary open-modal-btn"
+        id="openProfileModalBtn"
+        @onclick="()=>CreateProfil()">
+        <i class="fa-solid fa-plus me-1 fw-medium align-middle"></i>
+        Nouveau utilisateur
+    </button>
+</div>
+<ListProfil />

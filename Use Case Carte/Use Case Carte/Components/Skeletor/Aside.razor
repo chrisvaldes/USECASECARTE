@@ -1,0 +1,320 @@
+  
+﻿<!-- Start::main-sidebar-header --> 
+﻿
+
+<!-- Start::main-sidebar-header --> 
+<div class="main-sidebar-header">
+    <a href="index.html" class="header-logo">
+        <img
+            src="images/brand-logos/sgcam.png"
+            style="width:100%; height : 100%"
+            alt="logo"
+            class="desktop-logo" />
+        <img
+            src="images/brand-logos/logo-desktop.jpg"
+            style="width:100%; height : 100%"
+            alt="logo"
+            class="desktop-dark" />
+        <img
+            src="images/brand-logos/logo.jpg"
+            alt="logo"
+            class="toggle-logo" />
+        <img
+            src="images/brand-logos/logo.jpg"
+            alt="logo"
+            class="toggle-white" />
+        <img
+            src="images/brand-logos/logo-desktop.jpg"
+            style="width:100%; height : 100%"
+            alt="logo"
+            class="desktop-white" />
+    </a>
+</div>
+<div
+    class="main-sidebar simplebar-scrollable-y"
+    id="sidebar-scroll"
+    data-simplebar="init">
+    <div class="simplebar-wrapper" style="margin: -8px 0px -80px">
+        <div class="simplebar-height-auto-observer-wrapper">
+            <div class="simplebar-height-auto-observer"></div>
+        </div>
+
+        <div class="simplebar-mask">
+            <div class="simplebar-offset" style="right: 0px; bottom: 0px">
+                <div
+                    class="simplebar-content-wrapper"
+                    tabindex="0"
+                    role="region"
+                    aria-label="scrollable content"
+                    style="height: 100%; overflow: hidden scroll">
+                    <div class="simplebar-content" style="padding: 8px 0px 80px">
+                        <!-- Start::nav -->
+                        <nav class="main-menu-container nav nav-pills flex-column sub-open open active">
+                            <div class="slide-left active d-none" id="slide-left">
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    fill="#7b8191"
+                                    width="24"
+                                    height="24"
+                                    viewBox="0 0 24 24">
+                                    <path d="M13.293 6.293 7.586 12l5.707 5.707 1.414-1.414L10.414 12l4.293-4.293z"></path>
+                                </svg>
+                            </div> 
+                            
+                            <ul class="main-menu"
+                                style="display: block; margin-left: 0px; margin-right: 0px; margin-top : 1rem">
+                           
+                                @if (HasPermission("COMPTABLE"))
+                                {
+                                    <li class="slide__category">
+                                        <span class="category-name">
+                                            Dashboard
+                                        </span>
+                                    </li>
+
+                                    <li class="slide has-sub @(DashboardOpen ? "active open" : "")">
+
+                                        <a href="javascript:void(0);"
+                                           class="side-menu__item @(DashboardOpen ? "active" : "")">
+
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 side-menu__icon"
+                                                 fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+
+                                                <path stroke-linecap="round" stroke-linejoin="round"
+                                                      d="m2.25 12 8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25">
+                                                </path>
+
+                                            </svg>
+
+                                            <span class="side-menu__label">
+
+                                                Dashboard
+
+                                            </span>
+
+                                            <i class="ri-arrow-down-s-line side-menu__angle"></i>
+
+                                        </a>
+
+                                        <ul class="slide-menu child1" style="display:@(DashboardOpen ? "block" : "none")">
+
+                                            <li class="slide">
+
+                                                <NavLink href="@Route.Dashboard" class="side-menu__item"
+                                                         ActiveClass="active" Match="NavLinkMatch.All">
+
+                                                    Dashboard
+
+                                                </NavLink>
+
+                                            </li>
+
+                                        </ul>
+
+                                    </li>
+
+                                }
+                                 
+                                 
+                                <!-- ========================= -->
+                                <!-- GESTION PROFIL -->
+                                <!-- ========================= -->
+                                <li class="slide__category">
+ 
+                                    <span class="category-name">Gestion Profils</span>
+ 
+                                    <span class="category-name">
+                                        Gestion Profils
+                                    </span>
+ 
+                                </li>
+                                <li
+                                    class="slide has-sub @(ProfilOpen ? "active open" : "")">
+                                    <a
+                                        href="javascript:void(0);"
+                                        class="side-menu__item @(ProfilOpen ? " active ":"")">
+                                        <i class="ri-user-line side-menu__icon"></i>
+                                        <span class="side-menu__label">Profil Utilisateurs</span>
+                                        <i class="ri-arrow-down-s-line side-menu__angle"></i>
+                                    </a>
+                                    <ul
+                                        class="slide-menu child1"
+                                        style="display:@(ProfilOpen ? " block" : "none")">
+                                        <li class="slide">
+                                            <NavLink
+                                                href="@Route.Profils"
+                                                class="side-menu__item"
+                                                ActiveClass="active">
+                                                Liste des Profils
+                                            </NavLink>
+                                        </li>
+                                        <li class="slide"> 
+                                            <NavLink href="@Route.Utilisateurs" class="side-menu__item"
+                                                     ActiveClass="active">
+ 
+                                                Liste des Utilisateurs
+                                            </NavLink>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="slide__category">
+ 
+                                    <span class="category-name">Gestion Rôles & Permissions</span>
+                                </li> 
+
+ 
+                                <li class="slide has-sub @(RolePermissionOpen ? "active open" : "")">
+
+                                    <a href="javascript:void(0);"
+                                       class="side-menu__item @(RolePermissionOpen ? "active" : "")">
+ 
+                                        <i class="ri-user-line side-menu__icon"></i>
+                                        <span class="side-menu__label">Rôles & Permissions</span>
+                                        <i class="ri-arrow-down-s-line side-menu__angle"></i>
+                                    </a>
+  
+                                    <ul class="slide-menu child1"
+                                        style="display:@(RolePermissionOpen ? "block" : "none")">
+
+                                        <li class="slide">
+
+                                            <NavLink href="@Route.CreateRoles" class="side-menu__item"
+                                                     ActiveClass="active">
+
+                                                Liste des rôles
+                                                 
+                                            </NavLink>
+                                        </li>
+                                        <li class="slide">
+ 
+                                            <NavLink
+                                                href="@Route.Permissions"
+                                                class="side-menu__item"
+                                                ActiveClass="active">
+                                                Liste des Permission
+                                             </NavLink> 
+                                        </li>
+                                    </ul>
+                                </li>
+                                <!-- ========================= -->
+                                <!-- GESTION DES MAGS -->
+                                <!-- ========================= -->
+                                <li class="slide__category">
+                                    <span class="category-name">Gestion des MAGs</span>
+                                </li>
+                                <li
+                                    class="slide has-sub @(MagOpen ? " active open " : "")">
+                                    <a
+                                        href="javascript:void(0);"
+                                        class="side-menu__item @(MagOpen ? "active" : "")">
+                                        <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            class="w-4 h-4 side-menu__icon"
+                                            fill="none"
+                                            viewBox="0 0 24 24"
+                                            stroke-width="1.5"
+                                            stroke="currentColor">
+                                            <path
+                                                stroke-linecap="round"
+                                                stroke-linejoin="round"
+                                                d="M13.5 16.875h3.375m0 0h3.375m-3.375
+                                            0V13.5m0 3.375v3.375M6 10.5h2.25a2.25 2.25 0 0 0 2.25-2.25V6a2.25 2.25 0 0
+                                            0-2.25-2.25H6A2.25 2.25 0 0 0 3.75 6v2.25A2.25 2.25 0 0 0 6 10.5Zm0 9.75h2.25A2.25 2.25
+                                            0 0 0 10.5 18v-2.25a2.25 2.25 0 0 0-2.25-2.25H6a2.25 2.25 0 0 0-2.25 2.25V18A2.25 2.25 0
+                                            0 0 6 20.25Zm9.75-9.75H18a2.25 2.25 0 0 0 2.25-2.25V6A2.25 2.25 0 0 0 18 3.75h-2.25A2.25
+                                            2.25 0 0 0 13.5 6v2.25a2.25 2.25 0 0 0 2.25 2.25Z"></path>
+                                        </svg>
+                                        <span class="side-menu__label">Gestion des MAGs</span>
+                                        <i class="ri-arrow-down-s-line side-menu__angle"></i>
+                                    </a>
+                                    <ul
+                                        class="slide-menu child1"
+                                        style="display:@(MagOpen ? "block" : "none")">
+                                        <li class="slide">
+                                            <NavLink
+                                                href="@Route.GestionMAG"
+                                                class="side-menu__item"
+                                                ActiveClass="active">
+                                                Traiter Nouveau MAG
+                                            </NavLink>
+                                        </li>
+                                        <li class="slide">
+                                            <NavLink
+                                                href="@Route.DetailFacturation"
+                                                class="side-menu__item"
+                                                ActiveClass="active">
+                                                D?tail MAG client
+                                            </NavLink>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                            <div class="slide-right d-none" id="slide-right">
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    fill="#7b8191"
+                                    width="24"
+                                    height="24"
+                                    viewBox="0 0 24 24">
+                                    <path d="M10.707 17.707 16.414 12l-5.707-5.707-1.414 1.414L13.586 12l-4.293 4.293z"></path>
+                                </svg>
+                            </div>
+                        </nav>
+                        <!-- End::nav -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="simplebar-placeholder" style="width: 239px; height: 1720px"></div>
+    </div>
+    <div class="simplebar-track simplebar-horizontal" style="visibility: hidden">
+        <div class="simplebar-scrollbar" style="width: 0px; display: none"></div>
+    </div>
+    <div class="simplebar-track simplebar-vertical" style="visibility: visible">
+        <div class="simplebar-scrollbar" style="
+        height: 81px;
+        transform: translate3d(0px, 0px, 0px);
+        display: block;
+        "></div>
+    </div>
+</div> 
+
+ 
+@using Microsoft.AspNetCore.Components.Authorization 
+@using Use_Case_Carte.Components.Route
+@inject NavigationManager Navigation
+
+@code
+{
+    private string CurrentUri => Navigation.ToBaseRelativePath(Navigation.Uri);
+
+    private bool IsActive(string route)
+    {
+        route = route.TrimStart('/');
+
+        return CurrentUri.Equals(route, StringComparison.OrdinalIgnoreCase)
+            || CurrentUri.StartsWith(route + "/", StringComparison.OrdinalIgnoreCase);
+    }
+
+    private bool DashboardOpen =>
+        IsActive("MAG/dashboard");
+
+    private bool ProfilOpen =>
+        IsActive("MAG/profil")
+        || IsActive("MAG/creation-profil")
+        || IsActive("MAG/modification-profil")
+        || IsActive("MAG/suppression-profil")
+        || IsActive("MAG/utilisateurs")
+        || IsActive("MAG/nouveau-utilisateur"); 
+    private bool RolePermissionOpen =>
+        IsActive("MAG/roles")
+        || IsActive("MAG/permissions")
+        || IsActive("MAG/nouvelle-permission");
+
+    private bool MagOpen =>
+        IsActive("MAG/gestion-mag")
+        || IsActive("MAG/nouveau-mag")
+        || IsActive("MAG/detail-facturation")
+        || IsActive("MAG/Synthese");
+}
+ 
