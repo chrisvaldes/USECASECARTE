@@ -85,13 +85,14 @@ public partial class NouveauUtilisateur : ComponentBase
             ToastService.ShowSuccess(resp.Message);
             await Task.Delay(3000);
             StateHasChanged();
+            NavigationService.GoListeUtilisateur();
         }
         else
         {
             await JS.InvokeVoidAsync("showToast", $"{resp!.Message}", "warning");
             ToastService.ShowError(resp!.Message);
             // 2. Laisser le temps au toast de s'afficher/être visible
-            await Task.Delay(2000);
+            await Task.Delay(3000);
         }
     }
 

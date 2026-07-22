@@ -112,6 +112,7 @@ namespace Use_Case_Carte.Services
 
                     if (result is null)
                     {
+                        await _js.InvokeVoidAsync("toggleOffLoaderAndToast");
                         return new ApiResponse<bool>
                         {
                             Success = false,
@@ -125,6 +126,7 @@ namespace Use_Case_Carte.Services
                 catch (JsonException jex)
                 {
                     Console.WriteLine("Erreur de parsing JSON : " + jex.Message);
+                    await _js.InvokeVoidAsync("toggleOffLoaderAndToast");
                     return new ApiResponse<bool>
                     {
                         Success = false,

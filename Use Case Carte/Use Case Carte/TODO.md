@@ -1,15 +1,24 @@
-# Fix: Invalid Date Format in customer-billing API call
+# Plan de correction — Timeout HttpClient 100s
 
-## Problem
-The `+` timezone sign in ISO 8601 dates is not URL-encoded, causing the server to interpret it as a space.
+## Problème
+Le `HttpClient` côté Blazor Frontend a un timeout par défaut de **100 secondes**. Quand l'API prend plus de temps (traitement de fichiers volumineux, requêtes DB complexes), la requête est annulée avec l'erreur :
+> "The request was canceled due to the configured HttpClient.Timeout of 100 seconds elapsing"
 
-## Steps
+## Tâches
 
-- [x] Analyze root cause
-- [x] Get plan approval
-- [x] **Step 1**: Fix `DetailReclamationService.cs` - URL-encode date parameters in query string
-  - Convert local DateTime to UTC before string formatting to avoid `+` timezone offset in the date string
-  - Wrap formatted date with `Uri.EscapeDataString()` for safe URL transmission
-- [x] **Step 2**: Fix `InputBilling.cs` - Convert fields to auto-properties for proper Blazor binding
-- [x] **Step 3**: Build and verify the fix (user to rebuild and test)
+### ✅ Étape 1 : Frontend — Augmenter le timeout HttpClient
+- Fichier : `Use Case Carte/Use Case Carte/Program.cs`
+- ✅ Ajouté `.Timeout = TimeSpan.FromMinutes(10)` au HttpClient
+- ✅ Supprimé la double inscription de `PermissionService`
+
+### ✅ Étape 2 : API — Configurer Kestrel timeout
+- Fichier : `API/API/Program.cs`
+- ✅ Ajouté `KeepAliveTimeout = 15 min`
+- ✅ Ajouté `RequestHeadersTimeout = 15 min`
+
+### 🎯 Résultat final
+Les deux modifications sont en place. Le loader Blazor (via `toggleOnLoaderAndToast` / `toggleOffLoaderAndToast`) restera actif tant que l'API n'aura pas répondu, car :
+1. Le **HttpClient** ne coupera plus la requête avant 10 minutes
+2. **Kestrel** ne coupera pas non plus la connexion avant 15 minutes
+3. Le loader est géré avec `try/finally` ou `try/catch/finally` → le `toggleOffLoaderAndToast` est toujours exécuté
 

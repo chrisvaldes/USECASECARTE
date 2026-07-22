@@ -14,18 +14,37 @@ public partial class ListeMag
     protected IEnumerable<TypeMag> typeMags = new List<TypeMag>();
 
     [Inject]
-    public IJSRuntime JS { get; set; } = default!;
+    protected PermissionServiceAuth PermissionServiceAuth { get; set; } = default!;
+
+    protected HashSet<string> Permissions = new();
+
+    [Inject]
+    private IJSRuntime JS { get; set; } = default!;
 
     [Inject]
     public TypeMagService TypeMagService { get; set; } = default!;
 
     // utiliser un contructeur pour écouter à chaque fois la liste des mags traiter
 
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            Permissions = await PermissionServiceAuth.GetPermissions();
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Erreur chargement permissions: {ex.Message}");
+        }
+    }
+
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         if (firstRender)
         {
             await LoadListMags();
+            await Task.Delay(100);
+            await JS.InvokeVoidAsync("reinitUi");
         }
     }
 
@@ -45,6 +64,8 @@ public partial class ListeMag
         NavigationService.GoNouveauMAG();
     }
 
+    protected bool HasPermission(string permission) => Permissions.Contains(permission);
+
     public void GoToSyntheseMag(TypeMag typeMag)
     {
         Console.WriteLine("go to synthese");
@@ -55,6 +76,7 @@ public partial class ListeMag
     {
         await TypeMagService.GetBkmvti(typeMag);
     }
+
     public async Task DownloadCarteAReguler(TypeMag typeMag)
     {
         await TypeMagService.GetCarteAReguler(typeMag);

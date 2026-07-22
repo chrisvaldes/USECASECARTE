@@ -1,0 +1,178 @@
+{
+  "version": 2,
+  "dgSpecHash": "EDlH3daPTBY=",
+  "success": false,
+  "projectFilePath": "C:\\Users\\Admin_dev\\Desktop\\Valdes\\ExcelFile\\CARTEAPP\\PROJET\\USECASECARTE\\API\\API\\Modules\\Authorization\\Authorization.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Admin_dev\\.nuget\\packages\\microsoft.aspnetcore.authentication\\2.3.0\\microsoft.aspnetcore.authentication.2.3.0.nupkg.sha512",
+    "C:\\Users\\Admin_dev\\.nuget\\packages\\microsoft.aspnetcore.authentication.abstractions\\2.3.0\\microsoft.aspnetcore.authentication.abstractions.2.3.0.nupkg.sha512",
+    "C:\\Users\\Admin_dev\\.nuget\\packages\\microsoft.aspnetcore.authentication.cookies\\2.3.0\\microsoft.aspnetcore.authentication.cookies.2.3.0.nupkg.sha512",
+    "C:\\Users\\Admin_dev\\.nuget\\packages\\microsoft.aspnetcore.authentication.core\\2.3.0\\microsoft.aspnetcore.authentication.core.2.3.0.nupkg.sha512",
+    "C:\\Users\\Admin_dev\\.nuget\\packages\\microsoft.aspnetcore.authorization\\2.3.0\\microsoft.aspnetcore.authorization.2.3.0.nupkg.sha512",
+    "C:\\Users\\Admin_dev\\.nuget\\packages\\microsoft.aspnetcore.authorization.policy\\2.3.0\\microsoft.aspnetcore.authorization.policy.2.3.0.nupkg.sha512",
+    "C:\\Users\\Admin_dev\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\10.0.0\\microsoft.aspnetcore.cryptography.internal.10.0.0.nupkg.sha512",
+    "C:\\Users\\Admin_dev\\.nuget\\packages\\microsoft.aspnetcore.cryptography.keyderivation\\10.0.0\\microsoft.aspnetcore.cryptography.keyderivation.10.0.0.nupkg.sha512",
+    "C:\\Users\\Admin_dev\\.nuget\\packages\\microsoft.aspnetcore.dataprotection\\2.3.0\\microsoft.aspnetcore.dataprotection.2.3.0.nupkg.sha512",
+    "C:\\Users\\Admin_dev\\.nuget\\packages\\microsoft.aspnetcore.dataprotection.abstractions\\2.3.0\\microsoft.aspnetcore.dataprotection.abstractions.2.3.0.nupkg.sha512",
+    "C:\\Users\\Admin_dev\\.nuget\\packages\\microsoft.aspnetcore.hosting.abstractions\\2.3.0\\microsoft.aspnetcore.hosting.abstractions.2.3.0.nupkg.sha512",
+    "C:\\Users\\Admin_dev\\.nuget\\packages\\microsoft.aspnetcore.hosting.server.abstractions\\2.3.0\\microsoft.aspnetcore.hosting.server.abstractions.2.3.0.nupkg.sha512",
+    "C:\\Users\\Admin_dev\\.nuget\\packages\\microsoft.aspnetcore.http\\2.3.0\\microsoft.aspnetcore.http.2.3.0.nupkg.sha512",
+    "C:\\Users\\Admin_dev\\.nuget\\packages\\microsoft.aspnetcore.http.abstractions\\2.3.0\\microsoft.aspnetcore.http.abstractions.2.3.0.nupkg.sha512",
+    "C:\\Users\\Admin_dev\\.nuget\\packages\\microsoft.aspnetcore.http.extensions\\2.3.0\\microsoft.aspnetcore.http.extensions.2.3.0.nupkg.sha512",
+    "C:\\Users\\Admin_dev\\.nuget\\packages\\microsoft.aspnetcore.http.features\\2.3.0\\microsoft.aspnetcore.http.features.2.3.0.nupkg.sha512",
+    "C:\\Users\\Admin_dev\\.nuget\\packages\\microsoft.aspnetcore.identity\\2.3.9\\microsoft.aspnetcore.identity.2.3.9.nupkg.sha512",
+    "C:\\Users\\Admin_dev\\.nuget\\packages\\microsoft.aspnetcore.identity.entityframeworkcore\\10.0.9\\microsoft.aspnetcore.identity.entityframeworkcore.10.0.9.nupkg.sha512",
+    "C:\\Users\\Admin_dev\\.nuget\\packages\\microsoft.aspnetcore.mvc.abstractions\\2.3.0\\microsoft.aspnetcore.mvc.abstractions.2.3.0.nupkg.sha512",
+    "C:\\Users\\Admin_dev\\.nuget\\packages\\microsoft.aspnetcore.mvc.core\\2.3.9\\microsoft.aspnetcore.mvc.core.2.3.9.nupkg.sha512",
+    "C:\\Users\\Admin_dev\\.nuget\\packages\\microsoft.aspnetcore.responsecaching.abstractions\\2.3.0\\microsoft.aspnetcore.responsecaching.abstractions.2.3.0.nupkg.sha512",
+    "C:\\Users\\Admin_dev\\.nuget\\packages\\microsoft.aspnetcore.routing\\2.3.0\\microsoft.aspnetcore.routing.2.3.0.nupkg.sha512",
+    "C:\\Users\\Admin_dev\\.nuget\\packages\\microsoft.aspnetcore.routing.abstractions\\2.3.0\\microsoft.aspnetcore.routing.abstractions.2.3.0.nupkg.sha512",
+    "C:\\Users\\Admin_dev\\.nuget\\packages\\microsoft.aspnetcore.webutilities\\2.3.0\\microsoft.aspnetcore.webutilities.2.3.0.nupkg.sha512",
+    "C:\\Users\\Admin_dev\\.nuget\\packages\\microsoft.dotnet.platformabstractions\\2.1.0\\microsoft.dotnet.platformabstractions.2.1.0.nupkg.sha512",
+    "C:\\Users\\Admin_dev\\.nuget\\packages\\microsoft.entityframeworkcore\\10.0.9\\microsoft.entityframeworkcore.10.0.9.nupkg.sha512",
+    "C:\\Users\\Admin_dev\\.nuget\\packages\\microsoft.entityframeworkcore.abstractions\\10.0.9\\microsoft.entityframeworkcore.abstractions.10.0.9.nupkg.sha512",
+    "C:\\Users\\Admin_dev\\.nuget\\packages\\microsoft.entityframeworkcore.analyzers\\10.0.9\\microsoft.entityframeworkcore.analyzers.10.0.9.nupkg.sha512",
+    "C:\\Users\\Admin_dev\\.nuget\\packages\\microsoft.entityframeworkcore.relational\\10.0.9\\microsoft.entityframeworkcore.relational.10.0.9.nupkg.sha512",
+    "C:\\Users\\Admin_dev\\.nuget\\packages\\microsoft.extensions.caching.abstractions\\10.0.9\\microsoft.extensions.caching.abstractions.10.0.9.nupkg.sha512",
+    "C:\\Users\\Admin_dev\\.nuget\\packages\\microsoft.extensions.caching.memory\\10.0.9\\microsoft.extensions.caching.memory.10.0.9.nupkg.sha512",
+    "C:\\Users\\Admin_dev\\.nuget\\packages\\microsoft.extensions.configuration.abstractions\\10.0.9\\microsoft.extensions.configuration.abstractions.10.0.9.nupkg.sha512",
+    "C:\\Users\\Admin_dev\\.nuget\\packages\\microsoft.extensions.dependencyinjection\\10.0.9\\microsoft.extensions.dependencyinjection.10.0.9.nupkg.sha512",
+    "C:\\Users\\Admin_dev\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\10.0.5\\microsoft.extensions.dependencyinjection.abstractions.10.0.5.nupkg.sha512",
+    "C:\\Users\\Admin_dev\\.nuget\\packages\\microsoft.extensions.dependencymodel\\2.1.0\\microsoft.extensions.dependencymodel.2.1.0.nupkg.sha512",
+    "C:\\Users\\Admin_dev\\.nuget\\packages\\microsoft.extensions.diagnostics.abstractions\\8.0.1\\microsoft.extensions.diagnostics.abstractions.8.0.1.nupkg.sha512",
+    "C:\\Users\\Admin_dev\\.nuget\\packages\\microsoft.extensions.fileproviders.abstractions\\8.0.0\\microsoft.extensions.fileproviders.abstractions.8.0.0.nupkg.sha512",
+    "C:\\Users\\Admin_dev\\.nuget\\packages\\microsoft.extensions.hosting.abstractions\\8.0.1\\microsoft.extensions.hosting.abstractions.8.0.1.nupkg.sha512",
+    "C:\\Users\\Admin_dev\\.nuget\\packages\\microsoft.extensions.identity.core\\10.0.0\\microsoft.extensions.identity.core.10.0.0.nupkg.sha512",
+    "C:\\Users\\Admin_dev\\.nuget\\packages\\microsoft.extensions.identity.stores\\10.0.0\\microsoft.extensions.identity.stores.10.0.0.nupkg.sha512",
+    "C:\\Users\\Admin_dev\\.nuget\\packages\\microsoft.extensions.logging\\10.0.9\\microsoft.extensions.logging.10.0.9.nupkg.sha512",
+    "C:\\Users\\Admin_dev\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\10.0.9\\microsoft.extensions.logging.abstractions.10.0.9.nupkg.sha512",
+    "C:\\Users\\Admin_dev\\.nuget\\packages\\microsoft.extensions.objectpool\\8.0.11\\microsoft.extensions.objectpool.8.0.11.nupkg.sha512",
+    "C:\\Users\\Admin_dev\\.nuget\\packages\\microsoft.extensions.options\\10.0.9\\microsoft.extensions.options.10.0.9.nupkg.sha512",
+    "C:\\Users\\Admin_dev\\.nuget\\packages\\microsoft.extensions.primitives\\10.0.9\\microsoft.extensions.primitives.10.0.9.nupkg.sha512",
+    "C:\\Users\\Admin_dev\\.nuget\\packages\\microsoft.extensions.webencoders\\8.0.11\\microsoft.extensions.webencoders.8.0.11.nupkg.sha512",
+    "C:\\Users\\Admin_dev\\.nuget\\packages\\microsoft.net.http.headers\\2.3.0\\microsoft.net.http.headers.2.3.0.nupkg.sha512",
+    "C:\\Users\\Admin_dev\\.nuget\\packages\\newtonsoft.json\\9.0.1\\newtonsoft.json.9.0.1.nupkg.sha512",
+    "C:\\Users\\Admin_dev\\.nuget\\packages\\system.security.cryptography.pkcs\\8.0.1\\system.security.cryptography.pkcs.8.0.1.nupkg.sha512",
+    "C:\\Users\\Admin_dev\\.nuget\\packages\\system.security.cryptography.xml\\8.0.2\\system.security.cryptography.xml.8.0.2.nupkg.sha512"
+  ],
+  "logs": [
+    {
+      "code": "NU1903",
+      "level": "Warning",
+      "message": "Package 'Newtonsoft.Json' 9.0.1 has a known high severity vulnerability, https://github.com/advisories/GHSA-5crp-9r3c-p9vr",
+      "projectPath": "C:\\Users\\Admin_dev\\Desktop\\Valdes\\ExcelFile\\CARTEAPP\\PROJET\\USECASECARTE\\API\\API\\Modules\\Authorization\\Authorization.csproj",
+      "warningLevel": 1,
+      "filePath": "C:\\Users\\Admin_dev\\Desktop\\Valdes\\ExcelFile\\CARTEAPP\\PROJET\\USECASECARTE\\API\\API\\Modules\\Authorization\\Authorization.csproj",
+      "libraryId": "Newtonsoft.Json",
+      "targetGraphs": [
+        "net10.0"
+      ]
+    },
+    {
+      "code": "NU1903",
+      "level": "Warning",
+      "message": "Package 'System.Security.Cryptography.Xml' 8.0.2 has a known high severity vulnerability, https://github.com/advisories/GHSA-23rf-6693-g89p",
+      "projectPath": "C:\\Users\\Admin_dev\\Desktop\\Valdes\\ExcelFile\\CARTEAPP\\PROJET\\USECASECARTE\\API\\API\\Modules\\Authorization\\Authorization.csproj",
+      "warningLevel": 1,
+      "filePath": "C:\\Users\\Admin_dev\\Desktop\\Valdes\\ExcelFile\\CARTEAPP\\PROJET\\USECASECARTE\\API\\API\\Modules\\Authorization\\Authorization.csproj",
+      "libraryId": "System.Security.Cryptography.Xml",
+      "targetGraphs": [
+        "net10.0"
+      ]
+    },
+    {
+      "code": "NU1903",
+      "level": "Warning",
+      "message": "Package 'System.Security.Cryptography.Xml' 8.0.2 has a known high severity vulnerability, https://github.com/advisories/GHSA-37gx-xxp4-5rgx",
+      "projectPath": "C:\\Users\\Admin_dev\\Desktop\\Valdes\\ExcelFile\\CARTEAPP\\PROJET\\USECASECARTE\\API\\API\\Modules\\Authorization\\Authorization.csproj",
+      "warningLevel": 1,
+      "filePath": "C:\\Users\\Admin_dev\\Desktop\\Valdes\\ExcelFile\\CARTEAPP\\PROJET\\USECASECARTE\\API\\API\\Modules\\Authorization\\Authorization.csproj",
+      "libraryId": "System.Security.Cryptography.Xml",
+      "targetGraphs": [
+        "net10.0"
+      ]
+    },
+    {
+      "code": "NU1903",
+      "level": "Warning",
+      "message": "Package 'System.Security.Cryptography.Xml' 8.0.2 has a known high severity vulnerability, https://github.com/advisories/GHSA-8q5v-6pqq-x66h",
+      "projectPath": "C:\\Users\\Admin_dev\\Desktop\\Valdes\\ExcelFile\\CARTEAPP\\PROJET\\USECASECARTE\\API\\API\\Modules\\Authorization\\Authorization.csproj",
+      "warningLevel": 1,
+      "filePath": "C:\\Users\\Admin_dev\\Desktop\\Valdes\\ExcelFile\\CARTEAPP\\PROJET\\USECASECARTE\\API\\API\\Modules\\Authorization\\Authorization.csproj",
+      "libraryId": "System.Security.Cryptography.Xml",
+      "targetGraphs": [
+        "net10.0"
+      ]
+    },
+    {
+      "code": "NU1903",
+      "level": "Warning",
+      "message": "Package 'System.Security.Cryptography.Xml' 8.0.2 has a known high severity vulnerability, https://github.com/advisories/GHSA-cvvh-rhrc-wg4q",
+      "projectPath": "C:\\Users\\Admin_dev\\Desktop\\Valdes\\ExcelFile\\CARTEAPP\\PROJET\\USECASECARTE\\API\\API\\Modules\\Authorization\\Authorization.csproj",
+      "warningLevel": 1,
+      "filePath": "C:\\Users\\Admin_dev\\Desktop\\Valdes\\ExcelFile\\CARTEAPP\\PROJET\\USECASECARTE\\API\\API\\Modules\\Authorization\\Authorization.csproj",
+      "libraryId": "System.Security.Cryptography.Xml",
+      "targetGraphs": [
+        "net10.0"
+      ]
+    },
+    {
+      "code": "NU1903",
+      "level": "Warning",
+      "message": "Package 'System.Security.Cryptography.Xml' 8.0.2 has a known high severity vulnerability, https://github.com/advisories/GHSA-g8r8-53c2-pm3f",
+      "projectPath": "C:\\Users\\Admin_dev\\Desktop\\Valdes\\ExcelFile\\CARTEAPP\\PROJET\\USECASECARTE\\API\\API\\Modules\\Authorization\\Authorization.csproj",
+      "warningLevel": 1,
+      "filePath": "C:\\Users\\Admin_dev\\Desktop\\Valdes\\ExcelFile\\CARTEAPP\\PROJET\\USECASECARTE\\API\\API\\Modules\\Authorization\\Authorization.csproj",
+      "libraryId": "System.Security.Cryptography.Xml",
+      "targetGraphs": [
+        "net10.0"
+      ]
+    },
+    {
+      "code": "NU1903",
+      "level": "Warning",
+      "message": "Package 'System.Security.Cryptography.Xml' 8.0.2 has a known high severity vulnerability, https://github.com/advisories/GHSA-mmjf-rqrv-855v",
+      "projectPath": "C:\\Users\\Admin_dev\\Desktop\\Valdes\\ExcelFile\\CARTEAPP\\PROJET\\USECASECARTE\\API\\API\\Modules\\Authorization\\Authorization.csproj",
+      "warningLevel": 1,
+      "filePath": "C:\\Users\\Admin_dev\\Desktop\\Valdes\\ExcelFile\\CARTEAPP\\PROJET\\USECASECARTE\\API\\API\\Modules\\Authorization\\Authorization.csproj",
+      "libraryId": "System.Security.Cryptography.Xml",
+      "targetGraphs": [
+        "net10.0"
+      ]
+    },
+    {
+      "code": "NU1903",
+      "level": "Warning",
+      "message": "Package 'System.Security.Cryptography.Xml' 8.0.2 has a known high severity vulnerability, https://github.com/advisories/GHSA-w3x6-4m5h-cxqf",
+      "projectPath": "C:\\Users\\Admin_dev\\Desktop\\Valdes\\ExcelFile\\CARTEAPP\\PROJET\\USECASECARTE\\API\\API\\Modules\\Authorization\\Authorization.csproj",
+      "warningLevel": 1,
+      "filePath": "C:\\Users\\Admin_dev\\Desktop\\Valdes\\ExcelFile\\CARTEAPP\\PROJET\\USECASECARTE\\API\\API\\Modules\\Authorization\\Authorization.csproj",
+      "libraryId": "System.Security.Cryptography.Xml",
+      "targetGraphs": [
+        "net10.0"
+      ]
+    },
+    {
+      "code": "NU1605",
+      "level": "Error",
+      "message": "Warning As Error: Detected package downgrade: Microsoft.Extensions.DependencyInjection.Abstractions from 10.0.9 to 10.0.5. Reference the package directly from the project to select a different version. \r\n Authorization -> Microsoft.AspNetCore.Mvc.Core 2.3.9 -> Microsoft.Extensions.DependencyInjection 10.0.9 -> Microsoft.Extensions.DependencyInjection.Abstractions (>= 10.0.9) \r\n Authorization -> Microsoft.Extensions.DependencyInjection.Abstractions (>= 10.0.5)",
+      "projectPath": "C:\\Users\\Admin_dev\\Desktop\\Valdes\\ExcelFile\\CARTEAPP\\PROJET\\USECASECARTE\\API\\API\\Modules\\Authorization\\Authorization.csproj",
+      "filePath": "C:\\Users\\Admin_dev\\Desktop\\Valdes\\ExcelFile\\CARTEAPP\\PROJET\\USECASECARTE\\API\\API\\Modules\\Authorization\\Authorization.csproj",
+      "libraryId": "Microsoft.Extensions.DependencyInjection.Abstractions",
+      "targetGraphs": [
+        "net10.0"
+      ]
+    },
+    {
+      "code": "NU1605",
+      "level": "Error",
+      "message": "Warning As Error: Detected package downgrade: Microsoft.Extensions.Identity.Stores from 10.0.9 to 10.0.0. Reference the package directly from the project to select a different version. \r\n Authorization -> Users -> Microsoft.AspNetCore.Identity.EntityFrameworkCore 10.0.9 -> Microsoft.Extensions.Identity.Stores (>= 10.0.9) \r\n Authorization -> Users -> Microsoft.Extensions.Identity.Stores (>= 10.0.0)",
+      "projectPath": "C:\\Users\\Admin_dev\\Desktop\\Valdes\\ExcelFile\\CARTEAPP\\PROJET\\USECASECARTE\\API\\API\\Modules\\Authorization\\Authorization.csproj",
+      "filePath": "C:\\Users\\Admin_dev\\Desktop\\Valdes\\ExcelFile\\CARTEAPP\\PROJET\\USECASECARTE\\API\\API\\Modules\\Authorization\\Authorization.csproj",
+      "libraryId": "Microsoft.Extensions.Identity.Stores",
+      "targetGraphs": [
+        "net10.0"
+      ]
+    }
+  ]
+}

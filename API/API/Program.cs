@@ -77,6 +77,8 @@ builder.Services.AddScoped<MagProcessingHelper>();
 builder.Services.Configure<Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions>(options =>
 {
     options.Limits.MaxRequestBodySize = 500 * 1024 * 1024; // 500 Mo
+    options.Limits.KeepAliveTimeout = TimeSpan.FromMinutes(15);
+    options.Limits.RequestHeadersTimeout = TimeSpan.FromMinutes(15);
 });
 
 #endregion

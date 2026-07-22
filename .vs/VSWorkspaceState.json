@@ -1,0 +1,18 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\API",
+    "\\API\\API",
+    "\\API\\API\\Infrastructure",
+    "\\API\\API\\Infrastructure\\Persistence",
+    "\\API\\API\\Infrastructure\\Persistence\\Seeders",
+    "\\Use Case Carte",
+    "\\Use Case Carte\\Use Case Carte",
+    "\\Use Case Carte\\Use Case Carte\\Components",
+    "\\Use Case Carte\\Use Case Carte\\Components\\Pages",
+    "\\Use Case Carte\\Use Case Carte\\Components\\Pages\\Utilisateur",
+    "\\Use Case Carte\\Use Case Carte\\Components\\Skeletor"
+  ],
+  "SelectedNode": "\\Use Case Carte\\Use Case Carte\\Components\\Pages\\GestionMAG\\TraiterMAG\\ListeMag.razor",
+  "PreviewInSolutionExplorer": false
+}

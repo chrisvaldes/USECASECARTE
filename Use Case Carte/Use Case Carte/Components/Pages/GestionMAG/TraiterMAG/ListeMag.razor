@@ -84,14 +84,14 @@
                                                     <i class="ri-file-chart-line"></i>
                                                 </button>
 
-                                                <!-- Téléchargement BKMVTI -->
-
-                                                <button @onclick="() => DownloadBkmvti(typeMag)"
-                                                        disabled="@typeMag.isAlreadyDownload"
-                                                        class="btn btn-icon btn-sm btn-success-light">
-                                                    <i class="ri-download-2-line"></i>
-                                                </button>
-
+                                               @* Téléchargement BKMVTI  *@
+                                               @if (HasPermission("BKMVTI_CREER")){
+                                                    <button @onclick="() => DownloadBkmvti(typeMag)"
+                                                            disabled="@typeMag.isAlreadyDownload"
+                                                            class="btn btn-icon btn-sm btn-success-light">
+                                                        <i class="ri-download-2-line"></i>
+                                                    </button>
+                                                }
                                                 <button @onclick="() => DownloadCarteAReguler(typeMag)"
                                                         class="btn btn-icon btn-sm btn-warning-light">
                                                     <i class="ri-bank-card-line"></i>

@@ -64,7 +64,7 @@
                             <ul class="main-menu"
                                 style="display: block; margin-left: 0px; margin-right: 0px; margin-top : 1rem">
                            
-                                @if (HasPermission("UTILISATEUR"))
+                                @if (HasPermission("BKMVTI_CONSULTER"))
                                 {
                                     <li class="slide__category">
                                         <span class="category-name">
@@ -120,15 +120,11 @@
                                 <!-- GESTION UTILISATEUR -->
                                 <!-- ========================= -->
                                                            
-                                @if (HasPermission("ADMIN") || HasPermission("UTILISATEUR"))
+                                @if (HasPermission("UTILISATEUR"))
                                 {
                                 <li class="slide__category">
  
-                                    <span class="category-name">Gestion Utilisateurs</span>
- 
-                                    <span class="category-name">
-                                        Gestion Utilisateurs
-                                    </span>
+                                    <span class="category-name">Gestion Utilisateurs</span> 
  
                                 </li>
                                 <li
@@ -196,6 +192,8 @@
                                 <!-- ========================= -->
                                 <!-- GESTION DES MAGS -->
                                 <!-- ========================= -->
+                                @if (HasPermission("TYPEMAG") || HasPermission("BKMVTI"))
+                                {
                                 <li class="slide__category">
                                     <span class="category-name">Gestion des MAGs</span>
                                 </li>
@@ -245,6 +243,7 @@
                                         </li>
                                     </ul>
                                 </li>
+                                }
                             </ul>
                             <div class="slide-right d-none" id="slide-right">
                                 <svg
