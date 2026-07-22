@@ -9,6 +9,6 @@ namespace API.Application.Services.IServices
 
         public Task<List<CarteARegulerDto>> CarteAReguler(Guid typeMagId);
         public Task<DashboardSynthese> DashboardResult();
-        public Task<CustomerBilling> GetAllCustomerBilling(DateTimeOffset dateDebutFacturation, string ncpf, DateTimeOffset? dateFinFacturation = null);
+        public Task<ApiResponse<CustomerBilling>> GetAllCustomerBilling(DateTimeOffset dateDebutFacturation, string ncpf, DateTimeOffset? dateFinFacturation = null);
     }
 }

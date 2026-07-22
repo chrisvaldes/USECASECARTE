@@ -34,8 +34,7 @@ namespace Use_Case_Carte.Components.Pages.GestionMAG.DetailReclamation
 
             isLoading = true;
             try
-            {
-                Console.WriteLine($"============>>>>>>>>>>^^^^^^^^^^^^data : {InputBilling.NumeroCompte}, {InputBilling.Debut}");
+            { 
                 var result = await detailReclamationService.GetAllFacturation(
                     InputBilling.NumeroCompte!,
                     InputBilling.Debut,

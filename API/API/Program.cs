@@ -74,6 +74,11 @@ builder.Services.AddScoped<IComptesDebiteRedevCarteRepository, ComptesDebiteRede
 
 builder.Services.AddScoped<MagProcessingHelper>();
 
+builder.Services.Configure<Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions>(options =>
+{
+    options.Limits.MaxRequestBodySize = 500 * 1024 * 1024; // 500 Mo
+});
+
 #endregion
 
 #region CORS

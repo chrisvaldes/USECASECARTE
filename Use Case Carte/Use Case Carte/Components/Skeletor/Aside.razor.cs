@@ -20,11 +20,7 @@ public partial class Aside : ComponentBase
         {
             Permissions = await PermissionServiceAuth.GetPermissions();
 
-            Console.WriteLine("===== PERMISSIONS CHARGEES DANS ASIDE =====");
-            foreach (var p in Permissions)
-            {
-                Console.WriteLine($" - {p}");
-            }
+             
         }
         catch (Exception ex)
         {

@@ -65,12 +65,12 @@ namespace API.Controllers
             try
             {
                 // Appel du service async correctement
-                var result = await _magProcessingService.ProcessTxtExcelFiles(inputModel); 
+                var result = await _magProcessingService.ProcessTxtExcelFiles(inputModel);
                 if (!result.Success)
-                { 
+                {
                     return Ok(result);
                 }
- 
+
                 return Ok(result);
             }
             catch (Exception ex)
@@ -182,11 +182,11 @@ namespace API.Controllers
             DateTime debut,
             DateTime? fin
         )
-        {
+        { 
             if (string.IsNullOrWhiteSpace(ncpf))
             {
                 return Ok(
-                    ApiResponse<CustomerBilling>.Fail(
+                    ApiResponse< CustomerBilling>.Fail(
                         "Le paramètre 'ncpf' est requis."
                     )
                 );
@@ -197,6 +197,7 @@ namespace API.Controllers
                 ncpf,
                 fin.HasValue ? new DateTimeOffset(fin.Value) : (DateTimeOffset?)null
             );
+ 
             return Ok(result);
         }
     }

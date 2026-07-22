@@ -1,15 +1,15 @@
 {
   "version": 2,
-  "dgSpecHash": "eQKvf6vU8gU=",
+  "dgSpecHash": "/N0XRzlFsrE=",
   "success": true,
-  "projectFilePath": "C:\\Users\\Valdes FEUTSEU\\Desktop\\js\\cartes\\projetUseCase\\Use Case Carte\\Use Case Carte\\Frontend.csproj",
+  "projectFilePath": "C:\\Users\\Admin_dev\\Desktop\\Valdes\\ExcelFile\\CARTEAPP\\PROJET\\USECASECARTE\\Use Case Carte\\Use Case Carte\\Frontend.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\Valdes FEUTSEU\\.nuget\\packages\\blazored.localstorage\\4.2.0\\blazored.localstorage.4.2.0.nupkg.sha512",
-    "C:\\Users\\Valdes FEUTSEU\\.nuget\\packages\\blazorjwt.blazoredlocalstorage\\0.1.3\\blazorjwt.blazoredlocalstorage.0.1.3.nupkg.sha512",
-    "C:\\Users\\Valdes FEUTSEU\\.nuget\\packages\\blazorjwt.core\\0.1.3\\blazorjwt.core.0.1.3.nupkg.sha512",
-    "C:\\Users\\Valdes FEUTSEU\\.nuget\\packages\\microsoft.aspnetcore.app.internal.assets\\10.0.9\\microsoft.aspnetcore.app.internal.assets.10.0.9.nupkg.sha512",
-    "C:\\Users\\Valdes FEUTSEU\\.nuget\\packages\\microsoft.aspnetcore.components.webassembly.authentication\\6.0.5\\microsoft.aspnetcore.components.webassembly.authentication.6.0.5.nupkg.sha512",
-    "C:\\Users\\Valdes FEUTSEU\\.nuget\\packages\\mudblazor\\9.7.0\\mudblazor.9.7.0.nupkg.sha512"
+    "C:\\Users\\Admin_dev\\.nuget\\packages\\blazored.localstorage\\4.2.0\\blazored.localstorage.4.2.0.nupkg.sha512",
+    "C:\\Users\\Admin_dev\\.nuget\\packages\\blazorjwt.blazoredlocalstorage\\0.1.3\\blazorjwt.blazoredlocalstorage.0.1.3.nupkg.sha512",
+    "C:\\Users\\Admin_dev\\.nuget\\packages\\blazorjwt.core\\0.1.3\\blazorjwt.core.0.1.3.nupkg.sha512",
+    "C:\\Users\\Admin_dev\\.nuget\\packages\\microsoft.aspnetcore.app.internal.assets\\10.0.9\\microsoft.aspnetcore.app.internal.assets.10.0.9.nupkg.sha512",
+    "C:\\Users\\Admin_dev\\.nuget\\packages\\microsoft.aspnetcore.components.webassembly.authentication\\6.0.5\\microsoft.aspnetcore.components.webassembly.authentication.6.0.5.nupkg.sha512",
+    "C:\\Users\\Admin_dev\\.nuget\\packages\\mudblazor\\9.7.0\\mudblazor.9.7.0.nupkg.sha512"
   ],
   "logs": []
 }

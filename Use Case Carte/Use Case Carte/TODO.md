@@ -1,24 +1,15 @@
-# Plan de correction — Sidebar (Aside) avec permissions + UI fonctionnelle
+# Fix: Invalid Date Format in customer-billing API call
 
-## Problème
-- **Avec** `@rendermode` : Permissions OK ✅ mais sidebar figée ❌
-- **Sans** `@rendermode` : Sidebar active ✅ mais permissions vides ❌
+## Problem
+The `+` timezone sign in ISO 8601 dates is not URL-encoded, causing the server to interpret it as a space.
 
-## Cause
-Quand `@rendermode` est actif, Blazor remplace le DOM de la sidebar après le rendu initial → les événements JS (clics, SimpleBar) sont perdus.
+## Steps
 
-## ✅ Correction appliquée
-
-### Problème : Onglet actif invisible dans la sidebar
-**Cause** : `reinitUi()` dans `blazor-init.js` appelait `setNavActive()`, une fonction qui **écrase** les classes `active` que Blazor applique via `NavLink.ActiveClass`.
-
-### Correction : `wwwroot/js/blazor-init.js`
-- **Supprimé** l'appel à `setNavActive()` dans `reinitUi()` 
-- Blazor gère déjà correctement l'onglet actif via `NavLink` avec `ActiveClass="active"`
-- La fonction `setNavActive()` n'est plus nécessaire et interfère avec Blazor
-
-### Résultat final
-- ✅ Permissions chargées et affichées
-- ✅ Sidebar interactive (SimpleBar, clics, dropdowns)
-- ✅ Onglet actif visible (classe `active` conservée par Blazor)
+- [x] Analyze root cause
+- [x] Get plan approval
+- [x] **Step 1**: Fix `DetailReclamationService.cs` - URL-encode date parameters in query string
+  - Convert local DateTime to UTC before string formatting to avoid `+` timezone offset in the date string
+  - Wrap formatted date with `Uri.EscapeDataString()` for safe URL transmission
+- [x] **Step 2**: Fix `InputBilling.cs` - Convert fields to auto-properties for proper Blazor binding
+- [x] **Step 3**: Build and verify the fix (user to rebuild and test)
 

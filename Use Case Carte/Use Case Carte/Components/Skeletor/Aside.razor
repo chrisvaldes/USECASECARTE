@@ -64,7 +64,7 @@
                             <ul class="main-menu"
                                 style="display: block; margin-left: 0px; margin-right: 0px; margin-top : 1rem">
                            
-                                @if (HasPermission("COMPTABLE"))
+                                @if (HasPermission("UTILISATEUR"))
                                 {
                                     <li class="slide__category">
                                         <span class="category-name">
@@ -117,37 +117,33 @@
                                  
                                  
                                 <!-- ========================= -->
-                                <!-- GESTION PROFIL -->
+                                <!-- GESTION UTILISATEUR -->
                                 <!-- ========================= -->
+                                                           
+                                @if (HasPermission("ADMIN") || HasPermission("UTILISATEUR"))
+                                {
                                 <li class="slide__category">
  
-                                    <span class="category-name">Gestion Profils</span>
+                                    <span class="category-name">Gestion Utilisateurs</span>
  
                                     <span class="category-name">
-                                        Gestion Profils
+                                        Gestion Utilisateurs
                                     </span>
  
                                 </li>
                                 <li
-                                    class="slide has-sub @(ProfilOpen ? "active open" : "")">
+                                    class="slide has-sub @(UtilisateurOpen ? "active open" : "")">
                                     <a
                                         href="javascript:void(0);"
-                                        class="side-menu__item @(ProfilOpen ? " active ":"")">
+                                        class="side-menu__item @(UtilisateurOpen ? " active ":"")">
                                         <i class="ri-user-line side-menu__icon"></i>
                                         <span class="side-menu__label">Profil Utilisateurs</span>
                                         <i class="ri-arrow-down-s-line side-menu__angle"></i>
                                     </a>
                                     <ul
                                         class="slide-menu child1"
-                                        style="display:@(ProfilOpen ? " block" : "none")">
-                                        <li class="slide">
-                                            <NavLink
-                                                href="@Route.Profils"
-                                                class="side-menu__item"
-                                                ActiveClass="active">
-                                                Liste des Profils
-                                            </NavLink>
-                                        </li>
+                                        style="display:@(UtilisateurOpen ? " block" : "none")">
+                                         
                                         <li class="slide"> 
                                             <NavLink href="@Route.Utilisateurs" class="side-menu__item"
                                                      ActiveClass="active">
@@ -196,6 +192,7 @@
                                         </li>
                                     </ul>
                                 </li>
+                                }
                                 <!-- ========================= -->
                                 <!-- GESTION DES MAGS -->
                                 <!-- ========================= -->
@@ -299,7 +296,7 @@
     private bool DashboardOpen =>
         IsActive("MAG/dashboard");
 
-    private bool ProfilOpen =>
+    private bool UtilisateurOpen =>
         IsActive("MAG/profil")
         || IsActive("MAG/creation-profil")
         || IsActive("MAG/modification-profil")

@@ -3,7 +3,8 @@ using Shared.Attributes;
 
 namespace API.Domain.Entities
 {
-    public class TypeMag
+    [PermissionModule(nameof(TypeMag))]
+    public class TypeMag : BaseEntity
     {
         public Guid Id { get; set; }
         public string? TypeMags { get; set; }

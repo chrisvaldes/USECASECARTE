@@ -1,6 +1,10 @@
+using Domain.Common;
+using Shared.Attributes;
+
 namespace API.Domain.Entities
 {
-    public class Bkmvti
+    [PermissionModule(nameof(Bkmvti))]
+    public class Bkmvti : BaseEntity
     {
         public Guid Id { get; set; }
         public Guid TypeMag { get; set; }

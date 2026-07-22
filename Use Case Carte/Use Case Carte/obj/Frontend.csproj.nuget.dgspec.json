@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Valdes FEUTSEU\\Desktop\\js\\cartes\\projetUseCase\\Use Case Carte\\Use Case Carte\\Frontend.csproj": {}
+    "C:\\Users\\Admin_dev\\Desktop\\Valdes\\ExcelFile\\CARTEAPP\\PROJET\\USECASECARTE\\Use Case Carte\\Use Case Carte\\Frontend.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Valdes FEUTSEU\\Desktop\\js\\cartes\\projetUseCase\\Use Case Carte\\Use Case Carte\\Frontend.csproj": {
+    "C:\\Users\\Admin_dev\\Desktop\\Valdes\\ExcelFile\\CARTEAPP\\PROJET\\USECASECARTE\\Use Case Carte\\Use Case Carte\\Frontend.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Valdes FEUTSEU\\Desktop\\js\\cartes\\projetUseCase\\Use Case Carte\\Use Case Carte\\Frontend.csproj",
+        "projectUniqueName": "C:\\Users\\Admin_dev\\Desktop\\Valdes\\ExcelFile\\CARTEAPP\\PROJET\\USECASECARTE\\Use Case Carte\\Use Case Carte\\Frontend.csproj",
         "projectName": "Frontend",
-        "projectPath": "C:\\Users\\Valdes FEUTSEU\\Desktop\\js\\cartes\\projetUseCase\\Use Case Carte\\Use Case Carte\\Frontend.csproj",
-        "packagesPath": "C:\\Users\\Valdes FEUTSEU\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Valdes FEUTSEU\\Desktop\\js\\cartes\\projetUseCase\\Use Case Carte\\Use Case Carte\\obj\\",
+        "projectPath": "C:\\Users\\Admin_dev\\Desktop\\Valdes\\ExcelFile\\CARTEAPP\\PROJET\\USECASECARTE\\Use Case Carte\\Use Case Carte\\Frontend.csproj",
+        "packagesPath": "C:\\Users\\Admin_dev\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Admin_dev\\Desktop\\Valdes\\ExcelFile\\CARTEAPP\\PROJET\\USECASECARTE\\Use Case Carte\\Use Case Carte\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\Valdes FEUTSEU\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Admin_dev\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],

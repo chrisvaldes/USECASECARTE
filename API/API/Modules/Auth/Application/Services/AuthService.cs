@@ -4,6 +4,7 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Security.Claims;
 using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 using Auth.Application.DTO;
 using Auth.Application.Interfaces;
@@ -106,6 +107,7 @@ namespace Auth.Application.Services
                 };
             }
 
+
             var roles = await _userManager.GetRolesAsync(user);
             var permissions = await _permissionService.GetPermissionsByUserId(user.Id);
 
@@ -134,7 +136,9 @@ namespace Auth.Application.Services
                 expires: expiration,
                 signingCredentials: creds
             );
- 
+
+            await AddUserPermissions(user.Id);
+
 
             // On récupère le mode d'authentification
             var authMode = await _settingService.GetValueAsync(SettingKeys.AUTH_MODE);
@@ -252,6 +256,26 @@ namespace Auth.Application.Services
                 Token = new JwtSecurityTokenHandler().WriteToken(token),
                 Expiration = expiration,
             };
+        }
+ 
+
+        private async Task AddUserPermissions(Guid userId)
+        {
+            var permissions = await _permissionService.GetPermissionsByUserId(userId);
+            var permissionsJson = JsonSerializer.Serialize(permissions);
+
+            var user = await _userManager.FindByIdAsync(userId.ToString());
+
+            // Supprime l'ancien claim "Permissions"
+            var existingClaims = await _userManager.GetClaimsAsync(user);
+            var oldClaim = existingClaims.FirstOrDefault(c => c.Type == "Permissions");
+            if (oldClaim != null)
+            {
+                await _userManager.RemoveClaimAsync(user, oldClaim);
+            }
+
+            // Ajoute un seul claim JSON avec toutes les permissions
+            await _userManager.AddClaimAsync(user, new Claim("Permissions", permissionsJson));
         }
     }
 }

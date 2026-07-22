@@ -35,12 +35,18 @@ namespace Use_Case_Carte.Services
 
             try
             {
+                var debutStr = debut.Kind == DateTimeKind.Local
+                    ? debut.ToUniversalTime().ToString("o")
+                    : debut.ToString("o");
                 var query =
-                    $"api/customer-billing?ncpf={Uri.EscapeDataString(ncpf)}&debut={debut:o}";
+                    $"api/customer-billing?ncpf={Uri.EscapeDataString(ncpf)}&debut={Uri.EscapeDataString(debutStr)}";
 
                 if (fin.HasValue)
                 {
-                    query += $"&fin={fin.Value:o}";
+                    var finStr = fin.Value.Kind == DateTimeKind.Local
+                        ? fin.Value.ToUniversalTime().ToString("o")
+                        : fin.Value.ToString("o");
+                    query += $"&fin={Uri.EscapeDataString(finStr)}";
                 }
 
                 var response = await _http.GetAsync(query);
