@@ -40,7 +40,7 @@ public partial class Home : ComponentBase
 
                 await Task.Delay(3000);
 
-                NavigationService.GoProfil();
+                NavigationService.GoListeUtilisateur();
             }
             else
             {

@@ -7,7 +7,7 @@ using System.Linq;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
-using Users.Domain.Entities;
+using Users.Domain.Entities; 
 
 namespace Infrastructure.Persistence.Seeders
 {
@@ -28,6 +28,13 @@ namespace Infrastructure.Persistence.Seeders
 
         public async Task SeedAsync()
         {
+
+            // ========================
+            // SEED DES PERMISSIONS PAR DÉFAUT (avant tout le reste)
+            // ========================
+
+            await SeedDefaultPermissionsAsync();
+
             // ========================
             // DÉFINITION DES RÔLES
             // ========================
@@ -42,7 +49,7 @@ namespace Infrastructure.Persistence.Seeders
             var createdRoles = new Dictionary<string, Role>();
 
             foreach (var def in roleDefinitions)
-            {
+            {²
                 var role = await _roleManager.FindByNameAsync(def.Name);
                 if (role == null)
                 {
@@ -143,6 +150,34 @@ namespace Infrastructure.Persistence.Seeders
                 {
                     await _roleManager.AddClaimAsync(role, new Claim("permission", code));
                     Console.WriteLine($"Permission '{code}' ajoutée au rôle '{role.Name}'");
+                }
+            }
+        }
+
+        private async Task SeedDefaultPermissionsAsync()
+        {
+            var existingCodes = await _context.Set<Permission>()
+                .Select(p => p.Code)
+                .ToListAsync();
+
+            var toAdd = DefaultPermission.All
+                .Where(p => !existingCodes.Contains(p.Code))
+                .Select(p => new Permission
+                {
+                    Code = p.Code,
+                    // Adaptez selon les propriétés réelles de votre entité Permission
+                    Libelle = p.Description,
+                })
+                .ToList();
+
+            if (toAdd.Any())
+            {
+                await _context.Set<Permission>().AddRangeAsync(toAdd);
+                await _context.SaveChangesAsync();
+
+                foreach (var p in toAdd)
+                {
+                    Console.WriteLine($"Permission par défaut créée : {p.Code}");
                 }
             }
         }
