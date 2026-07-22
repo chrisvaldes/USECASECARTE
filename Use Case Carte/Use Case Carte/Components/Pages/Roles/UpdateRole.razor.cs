@@ -58,15 +58,17 @@ public partial class UpdateRole : ComponentBase, IDisposable
             {
                 roleModel.Name = response.Data.Name;
 
-                // Récupérer les IDs des permissions du rôle et les convertir en IDs d'arbre
-                var permissionIds = response.Data.Permissions ?? new List<string>();
+                // Récupérer les codes des permissions du rôle (ex: "UTILISATEUR", "UTILISATEUR_CREER")
+                var permissionCodes = response.Data.Permissions ?? new List<string>();
+                
+                // Trouver les IDs jsTree correspondant à ces codes pour les pré-sélectionner
                 _preSelectedIds = permissionsTree
-                    .Where(p => permissionIds.Contains(p.Id))
+                    .Where(p => permissionCodes.Contains(p.Code))
                     .Select(p => p.Id)
                     .ToArray();
 
-                _logger.LogInformation("Rôle chargé : {Name} avec {Count} permissions",
-                    roleModel.Name, _preSelectedIds.Length);
+                _logger.LogInformation("Rôle chargé : {Name} avec {Count} permissions (codes={Codes})",
+                    roleModel.Name, _preSelectedIds.Length, string.Join(", ", permissionCodes));
             }
             else
             {

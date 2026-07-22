@@ -1,7 +1,8 @@
-﻿window.initPermissionTree = (containerId, data, dotNetRef) => {
+﻿window.initPermissionTree = (containerId, data, dotNetRef, preSelectedIds) => {
     console.log("=== initPermissionTree appelé ===");
     console.log("containerId:", containerId);
     console.log("data brute reçue:", data);
+    console.log("preSelectedIds reçus:", preSelectedIds);
 
     if (typeof $ === "undefined") {
         console.error("❌ jQuery n'est pas chargé (typeof $ === 'undefined')");
@@ -61,6 +62,18 @@
             const instance = $.jstree.reference(container);
             const checkedIds = instance.get_checked(null, false);
             dotNetRef.invokeMethodAsync("OnPermissionsChecked", checkedIds);
+        });
+
+        // Cocher les permissions pré-sélectionnées après le chargement de l'arbre
+        $(container).on("ready.jstree", function () {
+            if (preSelectedIds && preSelectedIds.length > 0) {
+                console.log("🔄 Pré-sélection des permissions:", preSelectedIds);
+                const instance = $.jstree.reference(container);
+                if (instance) {
+                    instance.check_node(preSelectedIds);
+                    console.log("✅ Permissions pré-sélectionnées appliquées");
+                }
+            }
         });
 
         console.log("✅ jsTree initialisé avec succès");
