@@ -74,7 +74,18 @@ public partial class ListeMag
 
     public async Task DownloadBkmvti(TypeMag typeMag)
     {
-        await TypeMagService.GetBkmvti(typeMag);
+        try
+        {
+            await TypeMagService.GetBkmvti(typeMag);
+
+            // Marquer comme déjà téléchargé pour griser le bouton
+            typeMag.isAlreadyDownload = true;
+            StateHasChanged();
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Erreur téléchargement BKMVTI : {ex.Message}");
+        }
     }
 
     public async Task DownloadCarteAReguler(TypeMag typeMag)
