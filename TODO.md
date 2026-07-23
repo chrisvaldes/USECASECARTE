@@ -1,13 +1,37 @@
-# TODO - Redirection vers la page de connexion quand le token expire
+# Progression des modifications
 
-## Étapes
+## 1️⃣ Token expiré → Redirection vers la page de connexion
 
-- [x] Analyser le code existant
-- [x] Obtenir l'approbation du plan
-- [x] **Étape 1 : Modifier `JwtMessageHandler.cs`** - Ajouter la vérification d'expiration du token avant chaque requête + gestion des 401 ✅
-- [x] **Étape 2 : Modifier `AuthMessageHandler.cs`** - Appliquer la même logique pour la cohérence ✅
-- [x] **Étape 3 : Modifier `ProtectedPage.cs`** - Vérifier l'expiration du token (pas seulement son existence) ✅
-- [x] **Étape 4 : Modifier `BaseApiService.cs`** - Ajouter la vérification d'expiration du token dans AddAuthHeader() utilisé par tous les services ✅
-- [x] **Étape 5 : Mettre à jour les constructeurs de tous les services héritant de `BaseApiService`** pour inclure `NavigationManager` ✅
-- [x] **Étape 6 : Tester la compilation** - Vérifier que le projet compile sans erreur ✅
+### Fichiers modifiés :
+
+| Fichier | Modification |
+|---------|-------------|
+| **`JwtMessageHandler.cs`** | Vérification expiration token **avant** chaque requête HTTP. Si expiré → suppression token + redirection `/`. Gestion des réponses 401. |
+| **`AuthMessageHandler.cs`** | Même logique appliquée pour la cohérence (deuxième handler HTTP). |
+| **`JwtAuthenticationStateProvider.cs`** | Vérification token expiré via `IsTokenExpired()` + `RedirectToLoginIfNeeded()` (déjà en place). |
+| **`ProtectedPage.cs`** | Vérifie l'existence du token (déjà en place). |
+
+### Comment ça marche :
+1. Avant chaque appel API → le handler vérifie si le token est expiré
+2. Si expiré → token supprimé, utilisateur redirigé vers `/`
+3. Si le serveur répond 401 → même traitement
+4. `MainLayout.razor.cs` a déjà un timer qui vérifie l'état d'authentification toutes les 30s
+
+## 2️⃣ Redirection post-connexion basée sur les permissions
+
+### Fichier modifié :
+
+| Fichier | Modification |
+|---------|-------------|
+| **`Home.razor.cs`** | Nouvelle méthode `GetRedirectUrlFromToken()` qui décode le JWT et redirige selon les permissions. |
+
+### Logique de redirection :
+| Permission | Route |
+|-----------|-------|
+| `UTILISATEUR` | `/MAG/utilisateurs` |
+| `TYPEMAG` ou `BKMVTI` | `/MAG/dashboard` |
+| `BKMVTI_CONSULTER` | `/MAG/dashboard` |
+| Par défaut | `/MAG/dashboard` |
+
+## ✅ Build : Succès
 
