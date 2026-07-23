@@ -25,3 +25,9 @@ Both projects build successfully. The fix resolves the two root causes of the up
 1. ✅ Role IDs are now correctly sent (instead of role names)
 2. ✅ Response deserialization now matches `ApiResponse<string>` (instead of `ApiResponse<UserDto>`)
 
+### Delete User Feature
+- [x] Added `DeleteUser()` method in `UserService.cs` (frontend)
+- [x] Added confirmation modal in `ListeUtilisateur.razor`
+- [x] Added delete logic in `ListeUtilisateur.razor.cs`
+- [x] Replaced JS-based delete handler with Blazor-based handler
+

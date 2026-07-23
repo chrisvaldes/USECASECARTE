@@ -202,6 +202,72 @@ namespace Use_Case_Carte.Services
             throw new Exception("Erreur lors de la récupération du profil.");
         }
 
+        public async Task<ApiResponse<string>?> DeleteUser(Guid id)
+        {
+            await _js.InvokeVoidAsync("toggleOnLoaderAndToast");
+
+            try
+            {
+                await AddAuthHeader();
+
+                var response = await _http.DeleteAsync($"api/users/{id}");
+                var content = await response.Content.ReadAsStringAsync();
+
+                Console.WriteLine($"STATUS DeleteUser : {response.StatusCode}");
+                Console.WriteLine($"RESPONSE DeleteUser : {content}");
+
+                if (response.StatusCode == System.Net.HttpStatusCode.NotFound)
+                {
+                    return new ApiResponse<string>
+                    {
+                        Success = false,
+                        Message = "L'utilisateur à supprimer n'existe pas.",
+                        Errors = new List<string> { content },
+                    };
+                }
+
+                try
+                {
+                    var result = JsonSerializer.Deserialize<ApiResponse<string>>(
+                        content,
+                        _jsonOptions
+                    );
+                    return result
+                        ?? new ApiResponse<string>
+                        {
+                            Success = false,
+                            Message = "Réponse du serveur vide ou invalide",
+                            Errors = new List<string> { content },
+                        };
+                }
+                catch (JsonException jex)
+                {
+                    Console.WriteLine("Erreur de parsing JSON : " + jex.Message);
+                    return new ApiResponse<string>
+                    {
+                        Success = false,
+                        Message = response.IsSuccessStatusCode
+                            ? "Réponse du serveur invalide"
+                            : $"Erreur HTTP {(int)response.StatusCode} : {response.ReasonPhrase}",
+                        Errors = new List<string> { content },
+                    };
+                }
+            }
+            catch (Exception ex)
+            {
+                return new ApiResponse<string>
+                {
+                    Success = false,
+                    Message = "Erreur inattendue : " + ex.Message,
+                    Errors = new List<string> { ex.ToString() },
+                };
+            }
+            finally
+            {
+                await _js.InvokeVoidAsync("toggleOffLoaderAndToast");
+            }
+        }
+
         public async Task Logout()
         {
             await _storage.RemoveItemAsync("authToken");

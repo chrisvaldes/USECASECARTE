@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Use_Case_Carte")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b711cad3ec4babbe51c04251eb22f9d4655eb134")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+09cbf9887492b2a2058fc8ad2fb845f1565d46e8")]
 [assembly: System.Reflection.AssemblyProductAttribute("Use_Case_Carte")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Use_Case_Carte")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
