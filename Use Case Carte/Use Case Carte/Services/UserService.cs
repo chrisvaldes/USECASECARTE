@@ -1,3 +1,4 @@
+using System.Text.Json;
 using Blazored.LocalStorage;
 using Microsoft.JSInterop;
 using Use_Case_Carte.Components.Layout;
@@ -10,6 +11,7 @@ namespace Use_Case_Carte.Services
         private readonly IJSRuntime _js;
 
         private SafeJs _safeJs;
+        private readonly JsonSerializerOptions _jsonOptions = new(JsonSerializerDefaults.Web);
 
         public UserService(
             HttpClient http,
@@ -30,7 +32,6 @@ namespace Use_Case_Carte.Services
                 await AddAuthHeader();
                 await _js.InvokeVoidAsync("toggleOnLoaderAndToast");
 
- 
                 var response = await _http.PostAsJsonAsync("api/users", request);
                 var content = await response.Content.ReadAsStringAsync();
 
@@ -112,43 +113,69 @@ namespace Use_Case_Carte.Services
             }
         }
 
-        public async Task<ApiResponse<UserDto>?> UpdateUser(Guid id, UserDto profilModel)
+        public async Task<ApiResponse<string>?> UpdateUser(Guid id, UpdateUserDto updateUserDto)
         {
+            await _js.InvokeVoidAsync("toggleOnLoaderAndToast");
+
             try
             {
                 await AddAuthHeader();
 
-                await _js.InvokeVoidAsync("toggleOnLoaderAndToast");
+                var response = await _http.PutAsJsonAsync($"api/users/{id}", updateUserDto);
+                var content = await response.Content.ReadAsStringAsync();
 
-                var response = await _http.PutAsJsonAsync($"api/users/{id}", profilModel);
-
-                Console.WriteLine($"response {response.IsSuccessStatusCode}");
-
-                if (response.IsSuccessStatusCode)
-                {
-                    await _js.InvokeVoidAsync("toggleOffLoaderAndToast");
-
-                    return await response.Content.ReadFromJsonAsync<ApiResponse<UserDto>>();
-                }
+                Console.WriteLine($"STATUS UpdateUser : {response.StatusCode}");
+                Console.WriteLine($"RESPONSE UpdateUser : {content}");
 
                 if (response.StatusCode == System.Net.HttpStatusCode.NotFound)
                 {
-                    await _js.InvokeVoidAsync("toggleOffLoaderAndToast");
-
-                    throw new Exception(
-                        $"Erreur lors de la Modification du profil. Le profil à modifier n'existe pas."
-                    );
+                    return new ApiResponse<string>
+                    {
+                        Success = false,
+                        Message = "Le profil à modifier n'existe pas.",
+                        Errors = new List<string> { content },
+                    };
                 }
 
-                await _js.InvokeVoidAsync("toggleOffLoaderAndToast");
-
-                throw new Exception($"Erreur lors de la Modification du profil .");
+                try
+                {
+                    var result = JsonSerializer.Deserialize<ApiResponse<string>>(
+                        content,
+                        _jsonOptions
+                    );
+                    return result
+                        ?? new ApiResponse<string>
+                        {
+                            Success = false,
+                            Message = "Réponse du serveur vide ou invalide",
+                            Errors = new List<string> { content },
+                        };
+                }
+                catch (JsonException jex)
+                {
+                    Console.WriteLine("Erreur de parsing JSON : " + jex.Message);
+                    return new ApiResponse<string>
+                    {
+                        Success = false,
+                        Message = response.IsSuccessStatusCode
+                            ? "Réponse du serveur invalide"
+                            : $"Erreur HTTP {(int)response.StatusCode} : {response.ReasonPhrase}",
+                        Errors = new List<string> { content },
+                    };
+                }
             }
             catch (Exception ex)
             {
+                return new ApiResponse<string>
+                {
+                    Success = false,
+                    Message = "Erreur inattendue : " + ex.Message,
+                    Errors = new List<string> { ex.ToString() },
+                };
+            }
+            finally
+            {
                 await _js.InvokeVoidAsync("toggleOffLoaderAndToast");
-
-                throw new Exception($"Erreur lors de la Modification du profil {ex.Message}.");
             }
         }
 

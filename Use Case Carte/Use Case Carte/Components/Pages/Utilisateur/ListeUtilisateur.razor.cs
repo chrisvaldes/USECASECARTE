@@ -45,9 +45,9 @@ namespace Use_Case_Carte.Components.Pages.Utilisateur
 
         public UserDto SelectedProfil = new();
 
-        private void ModifierProfil(UserDto userDto)
+        private void GoModifierUtilisateur(UserDto userDto)
         {
-            // NavigationService.GoModifierProfil(userDto);
+            NavigationService.GoModifierUtilisateur(userDto);
         }
 
         private async Task OnCancel()

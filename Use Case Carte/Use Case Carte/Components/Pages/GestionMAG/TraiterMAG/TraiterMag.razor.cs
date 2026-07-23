@@ -2,12 +2,13 @@ using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Forms;
 using Microsoft.JSInterop;
 using Use_Case_Carte.Components.Route;
+using Use_Case_Carte.Components.Shared;
 using Use_Case_Carte.Models;
 using Use_Case_Carte.Services;
 
 namespace Use_Case_Carte.Components.Pages.GestionMAG.TraiterMAG;
 
-public partial class TraiterMag : ComponentBase
+public partial class TraiterMag : PermissionComponentBase
 {
     [Inject]
     NavigationService NavigationService { get; set; } = default!;

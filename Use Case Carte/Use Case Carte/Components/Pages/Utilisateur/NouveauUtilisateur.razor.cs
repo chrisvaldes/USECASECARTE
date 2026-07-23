@@ -22,12 +22,7 @@ public partial class NouveauUtilisateur : ComponentBase
     public int? Id { get; set; }
 
     private UserDto UserDto = new();
-
-    // private bool IsUpdate => Id.HasValue;
-
-    // [Parameter]
-    // public EventCallback OnSaved { get; set; }
-
+ 
     [Inject]
     public ToastService ToastService { get; set; } = default!;
 
@@ -96,13 +91,10 @@ public partial class NouveauUtilisateur : ComponentBase
         }
     }
 
-    private async Task OnCancel()
+    public void OnCancel()
     {
-        await Task.CompletedTask;
+        NavigationService.GoListeUtilisateur();
     }
 
-    private async Task OnSaveUtilisateur()
-    {
-        await Task.CompletedTask;
-    }
+ 
 }

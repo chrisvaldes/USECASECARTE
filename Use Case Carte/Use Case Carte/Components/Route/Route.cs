@@ -25,6 +25,7 @@ public static class Route
 
     public const string Utilisateurs = "/MAG/utilisateurs";
     public const string NouveauUtilisateur = "/MAG/nouveau-utilisateur";
+    public const string ModifierUtilisateur = "/MAG/modifier-utilisateur";
 
      public const string Profil = "MAG/profil"; 
 }

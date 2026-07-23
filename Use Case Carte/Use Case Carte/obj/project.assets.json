@@ -227,9 +227,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Admin_dev\\Desktop\\Valdes\\ExcelFile\\CARTEAPP\\PROJET\\USECASECARTE\\Use Case Carte\\Use Case Carte\\Frontend.csproj",
-      "projectName": "Frontend",
-      "projectPath": "C:\\Users\\Admin_dev\\Desktop\\Valdes\\ExcelFile\\CARTEAPP\\PROJET\\USECASECARTE\\Use Case Carte\\Use Case Carte\\Frontend.csproj",
+      "projectUniqueName": "C:\\Users\\Admin_dev\\Desktop\\Valdes\\ExcelFile\\CARTEAPP\\PROJET\\USECASECARTE\\Use Case Carte\\Use Case Carte\\Use Case Carte.csproj",
+      "projectName": "Use_Case_Carte",
+      "projectPath": "C:\\Users\\Admin_dev\\Desktop\\Valdes\\ExcelFile\\CARTEAPP\\PROJET\\USECASECARTE\\Use Case Carte\\Use Case Carte\\Use Case Carte.csproj",
       "packagesPath": "C:\\Users\\Admin_dev\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\Admin_dev\\Desktop\\Valdes\\ExcelFile\\CARTEAPP\\PROJET\\USECASECARTE\\Use Case Carte\\Use Case Carte\\obj\\",
       "projectStyle": "PackageReference",

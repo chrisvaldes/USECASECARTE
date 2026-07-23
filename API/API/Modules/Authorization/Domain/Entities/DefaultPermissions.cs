@@ -5,13 +5,13 @@ namespace Authorization.Domain.Entities
     {
         public static readonly (string Code, string Description)[] All = new[]
         {
-            ("GERER_RECLAMATION", "Créer un utilisateur"),
-            ("GERER_MAG", "Modifier un utilisateur"),
-            ("CREER_MAG", "Supprimer un utilisateur"),
-            ("CONSULTER_SYNTHESE", "Consulter les utilisateurs"),
+            ("GERER_RECLAMATION", "RECLAMATION"),
+            ("GERER_MAG", "GERER_MAG"),
+            ("CREER_MAG", "CREER_MAG"),
+            ("CONSULTER_SYNTHESE", "CONSULTER_SYNTHESE"),
 
-            ("TELECHARGER_MAG", "Créer un rôle"),
-            ("TELECHARGER_CARTE_REGULER", "Modifier un rôle"), 
+            ("TELECHARGER_MAG", "TELECHARGER_MAG"),
+            ("TELECHARGER_CARTE_REGULER", "TELECHARGER_CARTE"), 
 
             // Ajoutez ici les futures permissions "core" du projet
         };

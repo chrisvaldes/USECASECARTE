@@ -1,0 +1,121 @@
+@page "/MAG/modifier-utilisateur/{id:guid}"
+@rendermode @(new InteractiveServerRenderMode(prerender: false))
+<Toast />
+<div>
+    <SharedHeader
+        PreviousPage="Liste des utilisateurs"
+        CurrentPage="Creation utilisateur"
+        OnCancel="OnCancel" />
+</div>
+<div class="row align-items-center justify-content-center">
+    <div class="col-xxl-10 col-xl-12">
+        <div class="card custom-card">
+            <div class="card-header">
+                <div class="card-title">Nouveau Utilisateur</div>
+            </div>
+            <div class="card-body">
+                <EditForm Model="@UpdateUserDto" FormName="UpdateUser">
+                    <DataAnnotationsValidator />
+                    <ValidationSummary />
+                    <div class="row gy-3">
+                        <div class="col-xl-12">
+                            <label for="AG-utilisateur" class="form-label">
+                                Matricule
+                            </label>
+                            <InputText
+                                class="form-control"
+                                id="utilisateur-AG"
+                                @bind-Value="UpdateUserDto.Matricule"
+                                placeholder="AG-utilisateur" />
+                        </div>
+                        <div class="col-xl-6">
+                            <label for="profil-name" class="form-label">
+                                Nom
+                            </label>
+                            <InputText
+                                class="form-control"
+                                id="profil-name"
+                                @bind-Value="UpdateUserDto.Nom"
+                                placeholder="Nom utilisateur" />
+                        </div>
+                        <div class="col-xl-6">
+                            <label for="profil-name" class="form-label">
+                                Prenom
+                            </label>
+                            <InputText
+                                class="form-control"
+                                id="profil-name"
+                                @bind-Value="UpdateUserDto.Prenom"
+                                placeholder="Nom utilisateur" />
+                        </div>
+                        <div class="col-xl-12">
+                            <label for="email" class="form-label">
+                                Email
+                            </label>
+                            <InputText
+                                type="email"
+                                class="form-control"
+                                id="email"
+                                @bind-Value="UpdateUserDto.Email"
+                                placeholder="Email utilisateur" />
+                        </div>
+                        <div class="col-xl-6 mb-3">
+                            <label class="form-label">Type</label>
+                            <select class="form-select" @bind="UpdateUserDto.Type">
+                                <option value="DEFAULT">Par d?faut</option>
+                                <option value="LDAP">LDAP</option>
+                                <!-- adaptez selon vos valeurs r?elles de "Type" -->
+                            </select>
+                        </div>
+                        <div class="col-xl-6 mb-3 d-flex align-items-end">
+                            <div class="form-check">
+                                <input
+                                    type="checkbox"
+                                    class="form-check-input"
+                                    id="isActive"
+                                    @bind="UpdateUserDto.IsActive" />
+                                <label class="form-check-label" for="isActive">
+                                    Compte actif
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-xl-12 mb-3">
+                            <label class="form-label">Type de profil</label>
+                            <select
+                                id="rolesSelect"
+                                class="form-select"
+                                multiple
+                                @bind="SelectedRoles">
+                                @foreach (var role in AllRoles)
+                                {
+                                    <option value="@role.Name">
+                                    @role.Name
+                                    </option>
+                                }
+                            </select>
+                            <small class="text-muted">Maintenez Ctrl (ou Cmd sur Mac) pour s?lectionner plusieurs
+                                r?les.</small>
+                        </div>
+                    </div>
+                </EditForm>
+            </div>
+            <div class="modal-footer">
+                <button
+                    type="button"
+                    class="btn btn-primary btn-wave waves-effect waves-light  me-2"
+                    @onclick="() => OnCancel()">
+                    Annuler
+                </button>
+                <button
+                    id="
+                            submitBtn
+                            type="
+                    submit
+                    class="btn btn-success"
+                    @onclick="OnUpdateUser">
+                    Enregistrer
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

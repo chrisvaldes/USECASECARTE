@@ -1,0 +1,16 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\API",
+    "\\API\\API",
+    "\\API\\API\\Modules",
+    "\\API\\API\\Modules\\Authorization",
+    "\\API\\API\\Modules\\Organigramme",
+    "\\API\\API\\Modules\\Settings",
+    "\\API\\API\\Modules\\Shared",
+    "\\Use Case Carte",
+    "\\Use Case Carte\\Use Case Carte"
+  ],
+  "SelectedNode": "\\Use Case Carte\\Use Case Carte",
+  "PreviewInSolutionExplorer": false
+}

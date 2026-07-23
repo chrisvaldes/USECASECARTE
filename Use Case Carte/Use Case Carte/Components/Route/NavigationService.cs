@@ -17,10 +17,12 @@ public class NavigationService
     {
         _navigation.NavigateTo(Route.Login);
     }
+
     public void GoProfil()
     {
         _navigation.NavigateTo(Route.Profil);
     }
+
     public void GoCreerRole()
     {
         _navigation.NavigateTo(Route.CreateRoles);
@@ -30,9 +32,15 @@ public class NavigationService
     {
         _navigation.NavigateTo(Route.Utilisateurs);
     }
+
     public void GoNouveauUtilisateur()
     {
         _navigation.NavigateTo(Route.NouveauUtilisateur);
+    }
+
+    public void GoModifierUtilisateur(UserDto userDto)
+    {
+        _navigation.NavigateTo($"{Route.ModifierUtilisateur}/{userDto.Id}");
     }
 
     public void GoCreerProfil()
@@ -86,7 +94,7 @@ public class NavigationService
     }
 
     public void GoNouvellePermission()
-    { 
+    {
         _navigation.NavigateTo(Route.NouvellePermission);
     }
 
@@ -94,8 +102,4 @@ public class NavigationService
     {
         _navigation.NavigateTo($"{Route.ModifierRole}/{roleId}");
     }
-
-    
-
-    
 }

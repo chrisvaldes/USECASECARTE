@@ -49,7 +49,7 @@ namespace Infrastructure.Persistence.Seeders
             var createdRoles = new Dictionary<string, Role>();
 
             foreach (var def in roleDefinitions)
-            {²
+            {
                 var role = await _roleManager.FindByNameAsync(def.Name);
                 if (role == null)
                 {
@@ -160,13 +160,13 @@ namespace Infrastructure.Persistence.Seeders
                 .Select(p => p.Code)
                 .ToListAsync();
 
-            var toAdd = DefaultPermission.All
+            var toAdd = DefaultPermissions.All
                 .Where(p => !existingCodes.Contains(p.Code))
                 .Select(p => new Permission
                 {
                     Code = p.Code,
                     // Adaptez selon les propriétés réelles de votre entité Permission
-                    Libelle = p.Description,
+                    Name = p.Description,
                 })
                 .ToList();
 

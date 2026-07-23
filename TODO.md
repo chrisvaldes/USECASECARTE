@@ -1,13 +1,27 @@
-# TODO - Correction : Pré-sélectionner les permissions lors de la modification d'un rôle
+# TODO: Fix User Update Flow
 
-## Objectif
-Au clic sur l'icône de modification d'un rôle dans la liste, naviguer vers `/MAG/roles/modifier/{id}` avec le nom du rôle chargé ET les permissions associées pré-cochées dans l'arbre des permissions.
+## Issues
+1. Backend expects Role IDs (GUIDs) in `UpdateUserDto.Roles` but frontend sends role names
+2. Backend `UpdateAsync()` returns `ApiResponse<string>` but frontend tries to deserialize as `ApiResponse<UserDto>`
 
-## Étapes
+## Steps
 
-- [x] 1. Analyser le problème
-- [x] 2. Obtenir l'approbation du plan
-- [x] 3. Modifier `site.js` : Mettre à jour `initPermissionTree` pour accepter et utiliser les IDs pré-sélectionnés
-- [x] 4. Tester la compilation (vérifier que le projet build correctement)
-- [x] 5. Corriger `UpdateRole.razor.cs` : Comparer les permissions avec `p.Code` au lieu de `p.Id` car l'API retourne des **codes** (ex: "UTILISATEUR") et non des IDs numériques
+### Step 1: Fix `UserService.cs` (Frontend)
+- [x] Change `UpdateUser()` return type from `ApiResponse<UserDto>?` to `ApiResponse<string>?`
+- [x] Change deserialization from `ApiResponse<UserDto>` to `ApiResponse<string>`
+- [x] Update error handling to use `ApiResponse<string>`
+
+### Step 2: Fix `UpdateUtilisateur.razor.cs`
+- [x] Map `SelectedRoles` (role names) → role IDs using `AllRoles` list before calling `UpdateUser()`
+- [x] Update response handling to match `ApiResponse<string>`
+
+### Step 3: Rebuild and Test
+- [x] Build the frontend project
+- [x] Build the API project
+- [x] Test the update flow end-to-end
+
+## Result
+Both projects build successfully. The fix resolves the two root causes of the update failure:
+1. ✅ Role IDs are now correctly sent (instead of role names)
+2. ✅ Response deserialization now matches `ApiResponse<string>` (instead of `ApiResponse<UserDto>`)
 
