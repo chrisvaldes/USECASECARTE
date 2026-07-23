@@ -284,16 +284,36 @@
 @using Use_Case_Carte.Components.Route
 @inject NavigationManager Navigation
 
+@implements IDisposable
+
 @code
 {
-    private string CurrentUri => Navigation.ToBaseRelativePath(Navigation.Uri);
+    private string? _currentUri;
+
+    protected override void OnInitialized()
+    {
+        Navigation.LocationChanged += OnLocationChanged;
+        UpdateCurrentUri();
+    }
+
+    private void OnLocationChanged(object? sender, Microsoft.AspNetCore.Components.Routing.LocationChangedEventArgs e)
+    {
+        UpdateCurrentUri();
+        StateHasChanged();
+    }
+
+    private void UpdateCurrentUri()
+    {
+        _currentUri = Navigation.ToBaseRelativePath(Navigation.Uri);
+    }
 
     private bool IsActive(string route)
     {
         route = route.TrimStart('/');
 
-        return CurrentUri.Equals(route, StringComparison.OrdinalIgnoreCase)
-            || CurrentUri.StartsWith(route + "/", StringComparison.OrdinalIgnoreCase);
+        return _currentUri != null
+            && (_currentUri.Equals(route, StringComparison.OrdinalIgnoreCase)
+                || _currentUri.StartsWith(route + "/", StringComparison.OrdinalIgnoreCase));
     }
 
     private bool DashboardOpen =>
@@ -305,7 +325,8 @@
         || IsActive("MAG/modification-profil")
         || IsActive("MAG/suppression-profil")
         || IsActive("MAG/utilisateurs")
-        || IsActive("MAG/nouveau-utilisateur"); 
+        || IsActive("MAG/nouveau-utilisateur");
+
     private bool RolePermissionOpen =>
         IsActive("MAG/roles")
         || IsActive("MAG/permissions")
@@ -317,5 +338,10 @@
         || IsActive("MAG/nouveau-mag")
         || IsActive("MAG/detail-facturation")
         || IsActive("MAG/Synthese");
+
+    public void Dispose()
+    {
+        Navigation.LocationChanged -= OnLocationChanged;
+    }
 }
  
