@@ -1,33 +1,13 @@
-# TODO: Fix User Update Flow
+# TODO - Redirection vers la page de connexion quand le token expire
 
-## Issues
-1. Backend expects Role IDs (GUIDs) in `UpdateUserDto.Roles` but frontend sends role names
-2. Backend `UpdateAsync()` returns `ApiResponse<string>` but frontend tries to deserialize as `ApiResponse<UserDto>`
+## Étapes
 
-## Steps
-
-### Step 1: Fix `UserService.cs` (Frontend)
-- [x] Change `UpdateUser()` return type from `ApiResponse<UserDto>?` to `ApiResponse<string>?`
-- [x] Change deserialization from `ApiResponse<UserDto>` to `ApiResponse<string>`
-- [x] Update error handling to use `ApiResponse<string>`
-
-### Step 2: Fix `UpdateUtilisateur.razor.cs`
-- [x] Map `SelectedRoles` (role names) → role IDs using `AllRoles` list before calling `UpdateUser()`
-- [x] Update response handling to match `ApiResponse<string>`
-
-### Step 3: Rebuild and Test
-- [x] Build the frontend project
-- [x] Build the API project
-- [x] Test the update flow end-to-end
-
-## Result
-Both projects build successfully. The fix resolves the two root causes of the update failure:
-1. ✅ Role IDs are now correctly sent (instead of role names)
-2. ✅ Response deserialization now matches `ApiResponse<string>` (instead of `ApiResponse<UserDto>`)
-
-### Delete User Feature
-- [x] Added `DeleteUser()` method in `UserService.cs` (frontend)
-- [x] Added confirmation modal in `ListeUtilisateur.razor`
-- [x] Added delete logic in `ListeUtilisateur.razor.cs`
-- [x] Replaced JS-based delete handler with Blazor-based handler
+- [x] Analyser le code existant
+- [x] Obtenir l'approbation du plan
+- [x] **Étape 1 : Modifier `JwtMessageHandler.cs`** - Ajouter la vérification d'expiration du token avant chaque requête + gestion des 401 ✅
+- [x] **Étape 2 : Modifier `AuthMessageHandler.cs`** - Appliquer la même logique pour la cohérence ✅
+- [x] **Étape 3 : Modifier `ProtectedPage.cs`** - Vérifier l'expiration du token (pas seulement son existence) ✅
+- [x] **Étape 4 : Modifier `BaseApiService.cs`** - Ajouter la vérification d'expiration du token dans AddAuthHeader() utilisé par tous les services ✅
+- [x] **Étape 5 : Mettre à jour les constructeurs de tous les services héritant de `BaseApiService`** pour inclure `NavigationManager` ✅
+- [x] **Étape 6 : Tester la compilation** - Vérifier que le projet compile sans erreur ✅
 

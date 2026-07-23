@@ -1,4 +1,5 @@
 using Blazored.LocalStorage;
+using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
 using Use_Case_Carte.Components.Layout;
 using Use_Case_Carte.Models;
@@ -15,9 +16,10 @@ namespace Use_Case_Carte.Services
             HttpClient http,
             ILocalStorageService storage,
             IJSRuntime js,
-            SafeJs safeJs
+            SafeJs safeJs,
+            NavigationManager navigation
         )
-            : base(http, storage)
+            : base(http, storage, navigation)
         {
             _js = js;
             _safeJs = safeJs;

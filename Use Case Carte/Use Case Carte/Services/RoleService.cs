@@ -1,5 +1,6 @@
 using System.Text.Json;
 using Blazored.LocalStorage;
+using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
 using Use_Case_Carte.Models;
 
@@ -15,9 +16,10 @@ namespace Use_Case_Carte.Services
             HttpClient http,
             ILocalStorageService storage,
             ILogger<RoleService> logger,
-            IJSRuntime js
+            IJSRuntime js,
+            NavigationManager navigation
         )
-            : base(http, storage)
+            : base(http, storage, navigation)
         {
             _logger = logger;
             _js = js;

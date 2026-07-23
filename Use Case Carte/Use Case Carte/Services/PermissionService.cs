@@ -19,9 +19,10 @@ namespace Use_Case_Carte.Services
             HttpClient http,
             ILocalStorageService storage,
             IJSRuntime js,
-            ILogger<PermissionService> logger
+            ILogger<PermissionService> logger,
+            NavigationManager navigation
         )
-            : base(http, storage)
+            : base(http, storage, navigation)
         {
             _js = js;
             _logger = logger;
