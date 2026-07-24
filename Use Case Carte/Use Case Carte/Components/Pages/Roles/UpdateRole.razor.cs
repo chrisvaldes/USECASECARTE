@@ -6,8 +6,10 @@ using Use_Case_Carte.Services;
 
 namespace Use_Case_Carte.Components.Pages.Roles;
 
-public partial class UpdateRole : ComponentBase, IDisposable
+public partial class UpdateRole : ProtectedPageBase, IDisposable
 {
+    protected override string[] RequiredPermissions => new[] { "UTILISATEUR" };
+
     private readonly ILogger<UpdateRole> _logger;
 
     public UpdateRole(ILogger<UpdateRole> logger)
@@ -46,6 +48,7 @@ public partial class UpdateRole : ComponentBase, IDisposable
 
     protected override async Task OnInitializedAsync()
     {
+        await base.OnInitializedAsync();
         try
         {
             // Charger l'arbre des permissions

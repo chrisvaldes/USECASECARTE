@@ -1,37 +1,35 @@
-# Progression des modifications
+# TODO - Sécurité : Redirection token expiré + Contrôle d'accès par page
 
-## 1️⃣ Token expiré → Redirection vers la page de connexion
+## Étapes réalisées
 
-### Fichiers modifiés :
+- [x] Analyser le code existant
+- [x] Obtenir l'approbation du plan
+- [x] **Étape 1 : Modifier `JwtMessageHandler.cs`** - Ajouter vérification expiration token avant requête + gestion 401
+- [x] **Étape 2 : Modifier `AuthMessageHandler.cs`** - Même logique pour cohérence
+- [x] **Étape 3 : Créer page `/acces-refuse` (403)** - Page d'accès refusé + code-behind
+- [x] **Étape 4 : Étendre `ProtectedPage.cs`** - Ajouter `RequiredPermissions` + vérification
+- [x] **Étape 5 : Ajouter `GoToAccessDenied()` dans `NavigationService`**
+- [x] **Étape 6 : Modifier toutes les pages** pour hériter de `ProtectedPageBase` avec leurs permissions
 
-| Fichier | Modification |
-|---------|-------------|
-| **`JwtMessageHandler.cs`** | Vérification expiration token **avant** chaque requête HTTP. Si expiré → suppression token + redirection `/`. Gestion des réponses 401. |
-| **`AuthMessageHandler.cs`** | Même logique appliquée pour la cohérence (deuxième handler HTTP). |
-| **`JwtAuthenticationStateProvider.cs`** | Vérification token expiré via `IsTokenExpired()` + `RedirectToLoginIfNeeded()` (déjà en place). |
-| **`ProtectedPage.cs`** | Vérifie l'existence du token (déjà en place). |
+### Pages modifiées avec permissions :
 
-### Comment ça marche :
-1. Avant chaque appel API → le handler vérifie si le token est expiré
-2. Si expiré → token supprimé, utilisateur redirigé vers `/`
-3. Si le serveur répond 401 → même traitement
-4. `MainLayout.razor.cs` a déjà un timer qui vérifie l'état d'authentification toutes les 30s
+| Page | Permission requise |
+|------|-------------------|
+| `Dashboard.razor.cs` | BKMVTI_CONSULTER |
+| `Profil.razor.cs` | UTILISATEUR |
+| `ListProfil.razor.cs` | UTILISATEUR |
+| `CreateProfil.razor.cs` | UTILISATEUR |
+| `UpdateProfil.razor.cs` | UTILISATEUR |
+| `ListeMag.razor.cs` | TYPEMAG, BKMVTI, BKMVTI_CONSULTER |
+| `TraiterMag.razor.cs` | TYPEMAG, BKMVTI |
+| `ListRoles.razor.cs` | UTILISATEUR |
+| `CreateRole.razor.cs` | UTILISATEUR |
+| `UpdateRole.razor.cs` | UTILISATEUR |
+| `ListeUtilisateur.razor.cs` | UTILISATEUR |
+| `NouveauUtilisateur.razor.cs` | UTILISATEUR |
+| `UpdateUtilisateur.razor.cs` | UTILISATEUR |
+| `Synthese.razor.cs` | BKMVTI_CONSULTER, TYPEMAG |
+| `DetailReclamation.razor.cs` | BKMVTI_CONSULTER, TYPEMAG |
 
-## 2️⃣ Redirection post-connexion basée sur les permissions
-
-### Fichier modifié :
-
-| Fichier | Modification |
-|---------|-------------|
-| **`Home.razor.cs`** | Nouvelle méthode `GetRedirectUrlFromToken()` qui décode le JWT et redirige selon les permissions. |
-
-### Logique de redirection :
-| Permission | Route |
-|-----------|-------|
-| `UTILISATEUR` | `/MAG/utilisateurs` |
-| `TYPEMAG` ou `BKMVTI` | `/MAG/dashboard` |
-| `BKMVTI_CONSULTER` | `/MAG/dashboard` |
-| Par défaut | `/MAG/dashboard` |
-
-## ✅ Build : Succès
+- [x] **Étape 7 : Supprimer `@inherits PermissionComponentBase`** du `TraiterMag.razor` (conflit résolu)
 

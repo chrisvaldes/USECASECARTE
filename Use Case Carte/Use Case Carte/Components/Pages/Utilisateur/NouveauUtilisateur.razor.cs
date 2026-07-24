@@ -7,8 +7,9 @@ using Use_Case_Carte.Services;
 
 namespace Use_Case_Carte.Components.Pages.Utilisateur;
 
-public partial class NouveauUtilisateur : ComponentBase
+public partial class NouveauUtilisateur : ProtectedPageBase
 {
+    protected override string[] RequiredPermissions => new[] { "UTILISATEUR" };
     [Inject]
     private NavigationService NavigationService { get; set; } = default!;
 
@@ -35,6 +36,7 @@ public partial class NouveauUtilisateur : ComponentBase
 
     protected override async Task OnInitializedAsync()
     {
+        await base.OnInitializedAsync();
         await LoadRoles();
     }
 

@@ -1,5 +1,6 @@
 using System.Text.Json;
 using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Authorization;
 using Use_Case_Carte.Components.Route;
 using Use_Case_Carte.Services;
 
@@ -11,13 +12,54 @@ public class ProtectedPageBase : ComponentBase
     [Inject]
     protected NavigationService NavigationService { get; set; } = default!;
 
+    [Inject]
+    protected AuthenticationStateProvider AuthStateProvider { get; set; } = default!;
+
+    /// <summary>
+    /// Liste des permissions requises pour accéder à cette page.
+    /// Surcharger cette propriété dans les pages dérivées.
+    /// Exemple : protected override string[] RequiredPermissions => new[] { "UTILISATEUR" };
+    /// </summary>
+    protected virtual string[] RequiredPermissions => Array.Empty<string>();
+
     protected override async Task OnInitializedAsync()
     {
         var token = await AuthService.GetToken();
 
+        // Vérifier si le token existe et n'est pas expiré
         if (string.IsNullOrWhiteSpace(token) || IsTokenExpired(token))
         {
             await AuthService.Logout();
+            return;
+        }
+
+        // Vérifier les permissions si nécessaire
+        if (RequiredPermissions.Length > 0)
+        {
+            var hasPermission = await CheckPermissionsAsync();
+            if (!hasPermission)
+            {
+                NavigationService.GoToAccessDenied();
+                return;
+            }
+        }
+    }
+
+    private async Task<bool> CheckPermissionsAsync()
+    {
+        try
+        {
+            var state = await AuthStateProvider.GetAuthenticationStateAsync();
+            var userPermissions = state.User.Claims
+                .Where(c => c.Type == "permission")
+                .Select(c => c.Value)
+                .ToHashSet(StringComparer.OrdinalIgnoreCase);
+
+            return RequiredPermissions.Any(p => userPermissions.Contains(p));
+        }
+        catch
+        {
+            return false;
         }
     }
 
@@ -37,7 +79,6 @@ public class ProtectedPageBase : ComponentBase
         }
         catch
         {
-            // Si on ne peut pas décoder le token, le considérer comme expiré
             return true;
         }
     }

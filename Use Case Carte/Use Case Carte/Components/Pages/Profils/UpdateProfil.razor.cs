@@ -6,8 +6,10 @@ using Use_Case_Carte.Services;
 
 namespace Use_Case_Carte.Components.Pages.Profils;
 
-public partial class UpdateProfil
+public partial class UpdateProfil : ProtectedPageBase
 {
+    protected override string[] RequiredPermissions => new[] { "UTILISATEUR" };
+
     [Inject]
     public ProfilService ProfilService { get; set; } = default!;
 

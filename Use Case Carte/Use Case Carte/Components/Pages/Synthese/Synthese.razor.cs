@@ -9,8 +9,10 @@ using Use_Case_Carte.Services;
 
 namespace Use_Case_Carte.Components.Pages.Synthese
 {
-    public partial class Synthese : ComponentBase
+    public partial class Synthese : ProtectedPageBase
     {
+        protected override string[] RequiredPermissions => new[] { "BKMVTI_CONSULTER", "TYPEMAG" };
+
         private readonly ILogger<Synthese> _logger;
 
         [Inject]

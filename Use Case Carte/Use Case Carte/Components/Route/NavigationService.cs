@@ -102,4 +102,9 @@ public class NavigationService
     {
         _navigation.NavigateTo($"{Route.ModifierRole}/{roleId}");
     }
+
+    public void GoToAccessDenied()
+    {
+        _navigation.NavigateTo("/acces-refuse");
+    }
 }

@@ -6,8 +6,10 @@ using Use_Case_Carte.Services;
 
 namespace Use_Case_Carte.Components.Pages.GestionMAG.TraiterMAG;
 
-public partial class ListeMag
+public partial class ListeMag : ProtectedPageBase
 {
+    protected override string[] RequiredPermissions => new[] { "TYPEMAG", "BKMVTI", "BKMVTI_CONSULTER" };
+
     [Inject]
     public NavigationService NavigationService { get; set; } = default!;
 
@@ -28,6 +30,7 @@ public partial class ListeMag
 
     protected override async Task OnInitializedAsync()
     {
+        await base.OnInitializedAsync();
         try
         {
             Permissions = await PermissionServiceAuth.GetPermissions();

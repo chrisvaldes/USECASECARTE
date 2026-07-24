@@ -6,8 +6,10 @@ using Use_Case_Carte.Services;
 
 namespace Use_Case_Carte.Components.Pages.Roles
 {
-    public partial class ListRoles : ComponentBase
+    public partial class ListRoles : ProtectedPageBase
     {
+        protected override string[] RequiredPermissions => new[] { "UTILISATEUR" };
+
         private readonly ILogger<ListRoles> _logger;
 
         public ListRoles(ILogger<ListRoles> logger)
@@ -31,6 +33,7 @@ namespace Use_Case_Carte.Components.Pages.Roles
 
         protected override async Task OnInitializedAsync()
         {
+            await base.OnInitializedAsync();
             await LoadRoles();
         }
 

@@ -5,8 +5,10 @@ using Use_Case_Carte.Services;
 
 namespace Use_Case_Carte.Components.Pages.GestionMAG.DetailReclamation
 {
-    public partial class DetailReclamation : ComponentBase
+    public partial class DetailReclamation : ProtectedPageBase
     {
+        protected override string[] RequiredPermissions => new[] { "BKMVTI_CONSULTER", "TYPEMAG" };
+
         [Inject]
         protected DetailReclamationService detailReclamationService { get; set; } = default!;
 
@@ -19,6 +21,7 @@ namespace Use_Case_Carte.Components.Pages.GestionMAG.DetailReclamation
 
         protected override async Task OnInitializedAsync()
         {
+            await base.OnInitializedAsync();
             await GetCustomerBilling();
         }
 

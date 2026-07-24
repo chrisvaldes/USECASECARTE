@@ -8,8 +8,10 @@ using Use_Case_Carte.Services;
 
 namespace Use_Case_Carte.Components.Pages.GestionMAG.TraiterMAG;
 
-public partial class TraiterMag : PermissionComponentBase
+public partial class TraiterMag : ProtectedPageBase
 {
+    protected override string[] RequiredPermissions => new[] { "TYPEMAG", "BKMVTI" };
+
     [Inject]
     NavigationService NavigationService { get; set; } = default!;
 

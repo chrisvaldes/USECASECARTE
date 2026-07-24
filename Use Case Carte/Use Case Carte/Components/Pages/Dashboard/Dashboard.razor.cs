@@ -5,8 +5,10 @@ using Use_Case_Carte.Services;
 
 namespace Use_Case_Carte.Components.Pages.Dashboard
 {
-    public partial class Dashboard : ComponentBase
+    public partial class Dashboard : ProtectedPageBase
     {
+        protected override string[] RequiredPermissions => new[] { "BKMVTI_CONSULTER" };
+
         [Inject]
         private NavigationManager Navigation { get; set; } = default!;
 

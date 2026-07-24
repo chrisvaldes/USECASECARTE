@@ -8,8 +8,10 @@ using Use_Case_Carte.Services;
 
 namespace Use_Case_Carte.Components.Pages.Roles;
 
-public partial class CreateRole : ComponentBase, IDisposable
+public partial class CreateRole : ProtectedPageBase, IDisposable
 {
+    protected override string[] RequiredPermissions => new[] { "UTILISATEUR" };
+
     private readonly ILogger<CreateRole> _logger;
 
     public CreateRole(ILogger<CreateRole> logger)
@@ -48,6 +50,7 @@ public partial class CreateRole : ComponentBase, IDisposable
     // }
     protected override async Task OnInitializedAsync()
 {
+    await base.OnInitializedAsync();
     permissionsTree = await PermissionService.GetAllAsync();
 
     _logger.LogInformation("{Count} permissions récupérées", permissionsTree.Count);

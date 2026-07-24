@@ -6,8 +6,10 @@ using Use_Case_Carte.Services;
 
 namespace Use_Case_Carte.Components.Pages.Utilisateur
 {
-    public partial class UpdateUtilisateur : ComponentBase
+    public partial class UpdateUtilisateur : ProtectedPageBase
     {
+        protected override string[] RequiredPermissions => new[] { "UTILISATEUR" };
+
         [Inject]
         public UserService UserService { get; set; } = default!;
 
